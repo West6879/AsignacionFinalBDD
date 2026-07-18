@@ -1,4 +1,4 @@
-module com.example.asignacionfinalbdd {
+module visual {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
@@ -10,6 +10,6 @@ module com.example.asignacionfinalbdd {
     requires eu.hansolo.tilesfx;
     requires java.sql;
 
-    opens com.example.asignacionfinalbdd to javafx.fxml;
-    exports com.example.asignacionfinalbdd;
+    opens visual to javafx.fxml;
+    exports visual;
 }

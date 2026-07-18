@@ -11,6 +11,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-
+        primaryStage.setMaximized(true);
+        primaryStage.show();
     }
 }
