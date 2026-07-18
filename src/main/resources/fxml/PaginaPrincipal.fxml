@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="visual.Main"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" styleClass="panel-default" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visual.Main">
+   <children>
+      <Button layoutX="144.0" layoutY="115.0" mnemonicParsing="false" onAction="#insertarEstudiante" styleClass="btn-primary" text="Estudiante" />
+      <Button layoutX="392.0" layoutY="115.0" mnemonicParsing="false" onAction="#insertarAsignatura" text="Asginatura" />
+      <Button layoutX="250.0" layoutY="200.0" mnemonicParsing="false" text="Grupo" />
+   </children>
 </AnchorPane>

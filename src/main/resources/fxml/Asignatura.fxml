@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<?import javafx.scene.control.Button?>
+<AnchorPane prefHeight="625.0" prefWidth="1117.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visual.AsignaturaController">
+   <children>
+      <VBox layoutX="40.0" layoutY="56.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Creditos:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="10.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Horas Teoricas:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="10.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Horas Practicas:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="10.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Actividad:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="10.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="10.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha y hora:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+         </children>
+      </VBox>
+      <VBox layoutX="149.0" layoutY="56.0" prefHeight="292.0" prefWidth="266.0" spacing="14.0">
+         <children>
+            <TextField />
+            <TextField />
+            <TextField layoutX="10.0" layoutY="10.0" />
+            <TextField layoutX="10.0" layoutY="35.0" />
+            <TextField layoutX="10.0" layoutY="60.0" />
+            <TextField layoutX="10.0" layoutY="85.0" />
+            <TextField layoutX="10.0" layoutY="110.0" />
+            <TextField layoutX="10.0" layoutY="135.0" />
+         </children>
+      </VBox>
+      <TableView layoutX="461.0" layoutY="56.0" prefHeight="521.0" prefWidth="625.0">
+        <columns>
+          <TableColumn prefWidth="66.0" text="ID" />
+          <TableColumn prefWidth="84.0" text="Nombre" />
+            <TableColumn prefWidth="61.0" text="Creditos" />
+            <TableColumn prefWidth="89.0" text="Horas Teoricas" />
+            <TableColumn prefWidth="102.0" text="Horas Practicas" />
+            <TableColumn prefWidth="68.0" text="Actividad" />
+            <TableColumn prefWidth="64.0" text="Usuario" />
+            <TableColumn prefWidth="90.0" text="Fecha y hora" />
+        </columns>
+      </TableView>
+      <Button layoutX="63.0" layoutY="490.0" mnemonicParsing="false" text="Insertar" />
+      <Button layoutX="154.0" layoutY="490.0" mnemonicParsing="false" text="Actualizar" />
+      <Button layoutX="259.0" layoutY="490.0" mnemonicParsing="false" text="Eliminar" />
+   </children>
+</AnchorPane>
