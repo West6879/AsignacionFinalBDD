@@ -29,6 +29,10 @@ public class Estudiante {
         this.fechaNacimiento = fechaNacimiento;
     }
 
+    public Estudiante() {
+
+    }
+
     public String getId() {
         return id;
     }

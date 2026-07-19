@@ -15,7 +15,7 @@ import org.kordamp.bootstrapfx.BootstrapFX;
 import java.io.IOException;
 import java.net.URL;
 
-public class Main extends Application {
+public class PaginaPrincipalController extends Application {
 
     @FXML private AnchorPane rootPane;
 
@@ -37,7 +37,7 @@ public class Main extends Application {
 
     @FXML
     public void insertarEstudiante(ActionEvent event) throws IOException {
-        URL fxmlUrl = Main.class.getResource("/fxml/Estudiante.fxml");
+        URL fxmlUrl = PaginaPrincipalController.class.getResource("/fxml/Estudiante.fxml");
         if(fxmlUrl == null){
             throw new IOException("Estudiante.fxml no encontrado.");
         }
@@ -56,7 +56,7 @@ public class Main extends Application {
 
     @FXML
     public void insertarAsignatura(ActionEvent event) throws IOException {
-        URL fxmlUrl = Main.class.getResource("/fxml/Asignatura.fxml");
+        URL fxmlUrl = PaginaPrincipalController.class.getResource("/fxml/Asignatura.fxml");
         if(fxmlUrl == null){
             throw new IOException("Asignatura.fxml no encontrado.");
         }
@@ -74,7 +74,7 @@ public class Main extends Application {
     }
 
     public static Scene setupPrincipal() throws IOException {
-        URL fxmlUrl = Main.class.getResource("/fxml/PaginaPrincipal.fxml");
+        URL fxmlUrl = PaginaPrincipalController.class.getResource("/fxml/PaginaPrincipal.fxml");
         if(fxmlUrl == null){
             throw new IOException("PaginaPrioncipal.fxml no encontrado.");
         }

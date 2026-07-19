@@ -9,19 +9,23 @@ public class Asignatura {
     private int creditos;
     private int horasTeoricas;
     private int horasPracticas;
-    private String actvidad;
+    private String actividad;
     private String usuario;
     private Date fechaHora;
 
-    public Asignatura(String codAsginatura, String nombre, int creditos, int horasTeoricas, int horasPracticas, String actvidad, String usuario, Date fechaHora) {
+    public Asignatura(String codAsginatura, String nombre, int creditos, int horasTeoricas, int horasPracticas, String actividad, String usuario, Date fechaHora) {
         this.codAsginatura = codAsginatura;
         Nombre = nombre;
         this.creditos = creditos;
         this.horasTeoricas = horasTeoricas;
         this.horasPracticas = horasPracticas;
-        this.actvidad = actvidad;
+        this.actividad = actividad;
         this.usuario = usuario;
         this.fechaHora = fechaHora;
+    }
+
+    public Asignatura() {
+
     }
 
     public String getCodAsginatura() {
@@ -64,12 +68,12 @@ public class Asignatura {
         this.horasPracticas = horasPracticas;
     }
 
-    public String getActvidad() {
-        return actvidad;
+    public String getActividad() {
+        return actividad;
     }
 
-    public void setActvidad(String actvidad) {
-        this.actvidad = actvidad;
+    public void setActividad(String actividad) {
+        this.actividad = actividad;
     }
 
     public String getUsuario() {
