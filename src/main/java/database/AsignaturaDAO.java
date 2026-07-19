@@ -4,7 +4,9 @@ import estructura.Asignatura;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AsignaturaDAO {
 
@@ -70,8 +72,8 @@ public class AsignaturaDAO {
         }
     }
 
-    public List<Asignatura> findAll() {
-        List<Asignatura> lista = new ArrayList<>();
+    public Map<String, Asignatura> findAll() {
+        Map<String, Asignatura> lista = new HashMap<>();
         final String sql = "SELECT * FROM Asignatura";
 
         try (Connection connection = DatabaseConnection.getConnection()) {
@@ -90,7 +92,7 @@ public class AsignaturaDAO {
                 asignatura.setUsuario(resultSet.getString("Usuario"));
                 asignatura.setFechaHora(resultSet.getDate("FechaHora"));
 
-                lista.add(asignatura);
+                lista.put(asignatura.getCodAsginatura(), asignatura);
             }
 
         } catch(SQLException e) {

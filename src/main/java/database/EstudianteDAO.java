@@ -4,9 +4,7 @@ import estructura.Estudiante;
 import javafx.scene.paint.Color;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class EstudianteDAO {
 
@@ -76,8 +74,8 @@ public class EstudianteDAO {
         }
     }
 
-    public List<Estudiante> findAll() {
-        List<Estudiante> lista = new ArrayList<>();
+    public Map<String, Estudiante> findAll() {
+        Map<String, Estudiante> lista = new HashMap<>();
         final String sql = "SELECT * FROM Estudiante";
 
         try (Connection connection = DatabaseConnection.getConnection()) {
@@ -98,7 +96,7 @@ public class EstudianteDAO {
                 estudiante.setDireccion(resultSet.getString("Direccion"));
                 estudiante.setFechaNacimiento(resultSet.getDate("FechaNacimiento"));
 
-                lista.add(estudiante);
+                lista.put(estudiante.getId(), estudiante);
             }
 
         } catch(SQLException e) {
