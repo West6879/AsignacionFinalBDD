@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -14,14 +15,13 @@ import org.kordamp.bootstrapfx.BootstrapFX;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 
 public class PaginaPrincipalController extends Application {
 
     @FXML private AnchorPane rootPane;
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+
 
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -81,5 +81,37 @@ public class PaginaPrincipalController extends Application {
         FXMLLoader loader = new FXMLLoader(fxmlUrl);
         Parent root = loader.load();
         return new Scene(root);
+    }
+
+    public static void limiteDeLongitud(TextField field, int limite) {
+        field.setTextFormatter(new TextFormatter<>(change -> {
+            if(change.getControlNewText().length() <= limite) {
+                return change;
+            }
+            return null;
+        }));
+    }
+
+    public static void alerta(String titulo, String mensaje, Alert.AlertType tipo) {
+        Alert alerta = new Alert(tipo);
+        alerta.setTitle(titulo);
+        alerta.setHeaderText(null);
+        alerta.setContentText(mensaje);
+        alerta.showAndWait();
+    }
+
+    public static void limitarFechasFuturas(DatePicker datePicker) {
+        datePicker.setDayCellFactory(picker -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate fecha, boolean empty) {
+                super.updateItem(fecha, empty);
+                LocalDate hoy = LocalDate.now();
+
+                if(fecha != null && fecha.isAfter(hoy)) {
+                    setDisable(true);
+
+                }
+            }
+        });
     }
 }

@@ -3,9 +3,7 @@ package database;
 import estructura.Asignatura;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class AsignaturaDAO {
@@ -19,12 +17,12 @@ public class AsignaturaDAO {
 
 
     public void save(Asignatura asignatura) {
-        final String sql = "INSERT INTO Asignatura (CodAsginatura, Nombre, Creditos, HorasTeoricas, HorasPracticas, Actividad, Usuario, FechaHora) " +
+        final String sql = "INSERT INTO Asignatura (CodAsignatura, Nombre, Creditos, HorasTeoricas, HorasPracticas, Actividad, Usuario, FechaHora) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try(Connection connection = DatabaseConnection.getConnection()) {
             PreparedStatement ps =connection.prepareStatement(sql);
-            ps.setString(1, asignatura.getCodAsginatura());
+            ps.setString(1, asignatura.getCodAsignatura());
             ps.setString(2, asignatura.getNombre());
             ps.setInt(3, asignatura.getCreditos());
             ps.setInt(4, asignatura.getHorasTeoricas());
@@ -40,8 +38,8 @@ public class AsignaturaDAO {
     }
 
     public void update(Asignatura asignatura) {
-        final String sql = "UPDATE Asginatura SET Nombre = ?, Creditos = ?, HorasTeoricas = ?, HorasPracticas = ?, Actividad = ?, Usuario = ?, " +
-                "FechaHora = ? WHERE CodAsginatura = ?";
+        final String sql = "UPDATE Asignatura SET Nombre = ?, Creditos = ?, HorasTeoricas = ?, HorasPracticas = ?, Actividad = ?, Usuario = ?, " +
+                "FechaHora = ? WHERE CodAsignatura = ?";
 
         try(Connection connection = DatabaseConnection.getConnection()) {
             PreparedStatement ps =connection.prepareStatement(sql);
@@ -52,7 +50,7 @@ public class AsignaturaDAO {
             ps.setString(5, asignatura.getActividad());
             ps.setString(6, asignatura.getUsuario());
             ps.setDate(7, asignatura.getFechaHora());
-            ps.setString(8, asignatura.getCodAsginatura());
+            ps.setString(8, asignatura.getCodAsignatura());
             ps.executeUpdate();
 
         } catch (SQLException e) {
@@ -61,7 +59,7 @@ public class AsignaturaDAO {
     }
 
     public void delete(String CodAsignatura) {
-        final String sql = "DELETE FROM Asginatura WHERE CodAsginatura = ? ";
+        final String sql = "DELETE FROM Asignatura WHERE CodAsignatura = ? ";
         try(Connection connection = DatabaseConnection.getConnection()) {
             PreparedStatement ps =connection.prepareStatement(sql);
             ps.setString(1, CodAsignatura);
@@ -83,7 +81,7 @@ public class AsignaturaDAO {
             while(resultSet.next()) {
                 Asignatura asignatura = new Asignatura();
 
-                asignatura.setCodAsginatura(resultSet.getString("CodAsignatura"));
+                asignatura.setCodAsignatura(resultSet.getString("CodAsignatura"));
                 asignatura.setNombre(resultSet.getString("Nombre"));
                 asignatura.setCreditos(resultSet.getInt("Creditos"));
                 asignatura.setHorasTeoricas(resultSet.getInt("HorasTeoricas"));
@@ -92,7 +90,7 @@ public class AsignaturaDAO {
                 asignatura.setUsuario(resultSet.getString("Usuario"));
                 asignatura.setFechaHora(resultSet.getDate("FechaHora"));
 
-                lista.put(asignatura.getCodAsginatura(), asignatura);
+                lista.put(asignatura.getCodAsignatura(), asignatura);
             }
 
         } catch(SQLException e) {

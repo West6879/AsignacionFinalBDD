@@ -65,19 +65,27 @@ public class Main {
         EstudianteDAO.getInstance().delete(id);
     }
 
+    public boolean existeEstudiante(String id) {
+        return this.estudiantes.containsKey(id);
+    }
+
     public void guardarAsignatura(Asignatura asignatura) {
-        this.asignaturas.put(asignatura.getCodAsginatura(), asignatura);
+        this.asignaturas.put(asignatura.getCodAsignatura(), asignatura);
         AsignaturaDAO.getInstance().save(asignatura);
     }
 
     public void actualizarAsignatura(Asignatura asignatura) {
-        this.asignaturas.put(asignatura.getCodAsginatura(), asignatura);
+        this.asignaturas.put(asignatura.getCodAsignatura(), asignatura);
         AsignaturaDAO.getInstance().update(asignatura);
     }
 
     public void eliminarAsignatura(String id) {
         this.asignaturas.remove(id);
         AsignaturaDAO.getInstance().delete(id);
+    }
+
+    public boolean existeAsignatura(String id) {
+        return this.asignaturas.containsKey(id);
     }
 
     public static Main getInstance() { return servicio; }
