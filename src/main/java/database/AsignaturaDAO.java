@@ -46,7 +46,7 @@ public class AsignaturaDAO {
             ps.setString(1, asignatura.getNombre());
             ps.setInt(2, asignatura.getCreditos());
             ps.setInt(3, asignatura.getHorasTeoricas());
-            ps.setInt(4, asignatura.getHorasTeoricas());
+            ps.setInt(4, asignatura.getHorasPracticas());
             ps.setString(5, asignatura.getActividad());
             ps.setString(6, asignatura.getUsuario());
             ps.setDate(7, asignatura.getFechaHora());

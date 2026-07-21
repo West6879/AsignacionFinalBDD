@@ -93,6 +93,11 @@ public class AsignaturaController {
         String usuario = fieldUsuario.getText();
         Date fechaHora = Date.valueOf(datePickerFechaHora.getValue());
 
+        System.out.println("HorasTeoricas: " + horasTeoricas);
+        System.out.println("HorasPracticas: " + horasPracticas);
+        System.out.println("Creditos: " + creditos);
+        System.out.println("Resultado formula: " + (horasTeoricas + 0.75 * horasPracticas) + " <= " + creditos + " ?");
+
         if(Main.getInstance().existeAsignatura(codAsignatura)) {
             alerta("Alerta!!", "Ya existe una asignatura con este código!!", Alert.AlertType.ERROR);
             return;
@@ -125,6 +130,16 @@ public class AsignaturaController {
         String actividad = fieldActividad.getText();
         String usuario = fieldUsuario.getText();
         Date fechaHora = Date.valueOf(datePickerFechaHora.getValue());
+
+        System.out.println("HorasTeoricas: " + horasTeoricas);
+        System.out.println("HorasPracticas: " + horasPracticas);
+        System.out.println("Creditos: " + creditos);
+        System.out.println("Resultado formula: " + (horasTeoricas + 0.75 * horasPracticas) + " <= " + creditos + " ?");
+
+        if(horasTeoricas + (horasPracticas * 0.75) > creditos) {
+            alerta("Alerta!!", "Las horas teóricas mas el 75% de las horas practicas no puede ser mayor a créditos!!", Alert.AlertType.ERROR);
+            return;
+        }
 
         setearDatos(codAsignatura, nombre, creditos, horasTeoricas, horasPracticas, actividad, usuario, fechaHora);
         Main.getInstance().actualizarAsignatura(editando);
