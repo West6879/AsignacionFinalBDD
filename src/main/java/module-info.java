@@ -1,4 +1,4 @@
-module visual {
+module bddAcademico {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
@@ -9,6 +9,10 @@ module visual {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires java.sql;
+    requires javafx.base;
+
+    opens estructura to javafx.base;
+    exports estructura;
 
     opens visual to javafx.fxml;
     exports visual;

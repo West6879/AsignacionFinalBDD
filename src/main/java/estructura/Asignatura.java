@@ -4,32 +4,36 @@ import java.sql.Date;
 
 public class Asignatura {
 
-    private String codAsginatura;
+    private String codAsignatura;
     private String Nombre;
     private int creditos;
     private int horasTeoricas;
     private int horasPracticas;
-    private String actvidad;
+    private String actividad;
     private String usuario;
     private Date fechaHora;
 
-    public Asignatura(String codAsginatura, String nombre, int creditos, int horasTeoricas, int horasPracticas, String actvidad, String usuario, Date fechaHora) {
-        this.codAsginatura = codAsginatura;
+    public Asignatura(String codAsignatura, String nombre, int creditos, int horasTeoricas, int horasPracticas, String actividad, String usuario, Date fechaHora) {
+        this.codAsignatura = codAsignatura;
         Nombre = nombre;
         this.creditos = creditos;
         this.horasTeoricas = horasTeoricas;
         this.horasPracticas = horasPracticas;
-        this.actvidad = actvidad;
+        this.actividad = actividad;
         this.usuario = usuario;
         this.fechaHora = fechaHora;
     }
 
-    public String getCodAsginatura() {
-        return codAsginatura;
+    public Asignatura() {
+
     }
 
-    public void setCodAsginatura(String codAsginatura) {
-        this.codAsginatura = codAsginatura;
+    public String getCodAsignatura() {
+        return codAsignatura;
+    }
+
+    public void setCodAsignatura(String codAsginatura) {
+        this.codAsignatura = codAsginatura;
     }
 
     public String getNombre() {
@@ -64,12 +68,12 @@ public class Asignatura {
         this.horasPracticas = horasPracticas;
     }
 
-    public String getActvidad() {
-        return actvidad;
+    public String getActividad() {
+        return actividad;
     }
 
-    public void setActvidad(String actvidad) {
-        this.actvidad = actvidad;
+    public void setActividad(String actividad) {
+        this.actividad = actividad;
     }
 
     public String getUsuario() {

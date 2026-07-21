@@ -29,6 +29,10 @@ public class Estudiante {
         this.fechaNacimiento = fechaNacimiento;
     }
 
+    public Estudiante() {
+
+    }
+
     public String getId() {
         return id;
     }
@@ -107,5 +111,9 @@ public class Estudiante {
 
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public String getNombreCompleto() {
+        return nombre1 + ' ' + nombre2 + ' ' + apellido1 + ' ' + apellido2;
     }
 }
