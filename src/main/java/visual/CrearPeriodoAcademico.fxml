@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="523.0" prefWidth="372.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CONTROLLER_NAME">
+   <children>
+      <Label layoutX="7.0" layoutY="6.0" text="Crear Periodo Académico" />
+      <Label layoutX="45.0" layoutY="46.0" text="Código" />
+      <TextField editable="false" layoutX="171.0" layoutY="42.0" prefHeight="26.0" prefWidth="126.0" />
+      <Label layoutX="45.0" layoutY="86.0" text="Fecha Inicio" />
+      <DatePicker layoutX="171.0" layoutY="82.0" prefHeight="26.0" prefWidth="135.0" />
+      <Label layoutX="45.0" layoutY="127.0" text="Fecha Inicio de clases" />
+      <DatePicker layoutX="173.0" layoutY="123.0" prefHeight="26.0" prefWidth="135.0" />
+      <Label layoutX="45.0" layoutY="165.0" text="Fecha fin de clases" />
+      <Label layoutX="45.0" layoutY="200.0" text="Fecha max. prematricula" />
+      <Label layoutX="45.0" layoutY="234.0" text="Fecha lim. retiro" />
+      <Label layoutX="45.0" layoutY="267.0" text="Fecha lim. public. calif." />
+      <DatePicker layoutX="174.0" layoutY="161.0" prefHeight="26.0" prefWidth="135.0" />
+      <DatePicker layoutX="176.0" layoutY="196.0" prefHeight="26.0" prefWidth="135.0" />
+      <DatePicker layoutX="177.0" layoutY="230.0" prefHeight="26.0" prefWidth="135.0" />
+      <DatePicker layoutX="179.0" layoutY="263.0" prefHeight="26.0" prefWidth="135.0" />
+      <Label layoutX="45.0" layoutY="303.0" text="Descripción" />
+      <TextArea layoutX="43.0" layoutY="330.0" prefHeight="147.0" prefWidth="282.0" />
+      <Button layoutX="290.0" layoutY="484.0" mnemonicParsing="false" text="Cancelar" />
+      <Button layoutX="234.0" layoutY="484.0" mnemonicParsing="false" text="Crear" />
+   </children>
+</AnchorPane>

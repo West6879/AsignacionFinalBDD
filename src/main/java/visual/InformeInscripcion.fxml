@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="546.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CONTROLLER_NAME">
+   <children>
+      <ComboBox layoutX="47.0" layoutY="52.0" prefWidth="150.0" />
+      <ComboBox layoutX="241.0" layoutY="52.0" prefWidth="150.0" />
+      <Button layoutX="434.0" layoutY="52.0" mnemonicParsing="false" text="Ver informe" />
+      <Label layoutX="47.0" layoutY="35.0" text="Seleccione un estudiante" />
+      <Label layoutX="241.0" layoutY="35.0" text="Seleccione periodo" />
+      <TextArea layoutX="47.0" layoutY="100.0" prefHeight="271.0" prefWidth="392.0" />
+      <Button layoutX="461.0" layoutY="356.0" mnemonicParsing="false" text="Cerrar" />
+      <Label layoutX="8.0" layoutY="6.0" text="Visualizar informe de inscripción" />
+   </children>
+</AnchorPane>
