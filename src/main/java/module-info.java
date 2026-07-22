@@ -10,6 +10,7 @@ module bddAcademico {
     requires eu.hansolo.tilesfx;
     requires java.sql;
     requires javafx.base;
+    requires javafx.graphics;
 
     opens estructura to javafx.base;
     exports estructura;

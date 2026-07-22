@@ -7,6 +7,6 @@
    <children>
       <Button layoutX="144.0" layoutY="115.0" mnemonicParsing="false" onAction="#insertarEstudiante" styleClass="btn-primary" text="Estudiante" />
       <Button layoutX="392.0" layoutY="115.0" mnemonicParsing="false" onAction="#insertarAsignatura" text="Asignatura" />
-      <Button layoutX="250.0" layoutY="200.0" mnemonicParsing="false" text="Grupo" />
+      <Button layoutX="250.0" layoutY="200.0" mnemonicParsing="false" text="Grupo" onAction="#btnGrupo"/>
    </children>
 </AnchorPane>

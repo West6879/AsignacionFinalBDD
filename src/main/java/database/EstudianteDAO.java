@@ -21,7 +21,7 @@ public class EstudianteDAO {
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try(Connection connection = DatabaseConnection.getConnection()) {
-            PreparedStatement ps =connection.prepareStatement(sql);
+            PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, estudiante.getId());
             ps.setString(2, estudiante.getNombre1());
             ps.setString(3, estudiante.getNombre2());
@@ -44,7 +44,7 @@ public class EstudianteDAO {
                 "Direccion = ?, FechaNacimiento = ? WHERE Id = ?";
 
         try(Connection connection = DatabaseConnection.getConnection()) {
-            PreparedStatement ps =connection.prepareStatement(sql);
+            PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, estudiante.getNombre1());
             ps.setString(2, estudiante.getNombre2());
             ps.setString(3, estudiante.getApellido1());
@@ -65,7 +65,7 @@ public class EstudianteDAO {
     public void delete(String id) {
         final String sql = "DELETE FROM Estudiante WHERE Id = ? ";
         try(Connection connection = DatabaseConnection.getConnection()) {
-            PreparedStatement ps =connection.prepareStatement(sql);
+            PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, id);
             ps.executeUpdate();
 
