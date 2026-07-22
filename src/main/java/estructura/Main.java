@@ -2,6 +2,7 @@ package estructura;
 
 import database.AsignaturaDAO;
 import database.EstudianteDAO;
+import database.GrupoDAO;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,6 +14,7 @@ public class Main {
     private static final Main servicio = new Main();
     private final Map<String, Estudiante> estudiantes;
     private final Map<String, Asignatura> asignaturas;
+    private final Map<String, Grupo> grupos;
 
     static void main() {
 
@@ -33,6 +35,7 @@ public class Main {
     private Main() {
         this.estudiantes = new HashMap<>();
         this.asignaturas = new HashMap<>();
+        this.grupos = new HashMap<>();
 
         cargarDatos();
     }
@@ -42,12 +45,18 @@ public class Main {
         IO.println("Cargando estudiantes!!");
         EstudianteDAO estudianteDAO = EstudianteDAO.getInstance();
         IO.println("Estudiantes cargados!!");
+
         IO.println("Cargando asginaturas!!");
         AsignaturaDAO asignaturaDAO = AsignaturaDAO.getInstance();
         IO.println("Asignaturas cargadas!!");
 
+        IO.println("Cargando grupos!!");
+        GrupoDAO grupoDAO = GrupoDAO.getInstance();
+        IO.println("Grupos cargados!!");
+
         this.estudiantes.putAll(estudianteDAO.findAll());
         this.asignaturas.putAll(asignaturaDAO.findAll());
+        this.grupos.putAll(grupoDAO.findAll());
     }
 
     public void guardarEstudiante(Estudiante estudiante) {
@@ -88,6 +97,10 @@ public class Main {
         return this.asignaturas.containsKey(id);
     }
 
+    public void actualizarGrupo(Grupo grupo) {
+        this.grupos.put(grupo.getClaveGrupo(), grupo);
+    }
+
     public static Main getInstance() { return servicio; }
 
     public Map<String, Estudiante> getEstudiantes() {
@@ -97,4 +110,6 @@ public class Main {
     public Map<String, Asignatura> getAsignaturas() {
         return asignaturas;
     }
+
+    public Map<String, Grupo> getGrupos() { return grupos; }
 }

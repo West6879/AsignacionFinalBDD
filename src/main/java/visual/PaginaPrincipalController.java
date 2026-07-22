@@ -73,6 +73,25 @@ public class PaginaPrincipalController extends Application {
         stage.show();
     }
 
+    @FXML
+    public void btnGrupo(ActionEvent event) throws IOException {
+        URL fxmlUrl = PaginaPrincipalController.class.getResource("/fxml/Grupo.fxml");
+        if(fxmlUrl == null){
+            throw new IOException("Grupo.fxml no encontrado.");
+        }
+        FXMLLoader loader = new FXMLLoader(fxmlUrl);
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        Window owner = rootPane.getScene().getWindow();
+        stage.initOwner(owner);
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.setResizable(false);
+        stage.setTitle("Manejo de grupos");
+        stage.setScene(scene);
+        stage.show();
+    }
+
     public static Scene setupPrincipal() throws IOException {
         URL fxmlUrl = PaginaPrincipalController.class.getResource("/fxml/PaginaPrincipal.fxml");
         if(fxmlUrl == null){
