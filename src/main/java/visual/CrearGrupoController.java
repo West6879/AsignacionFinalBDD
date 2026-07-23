@@ -1,13 +1,17 @@
 package visual;
 
+import database.GrupoHorarioDAO;
 import estructura.Asignatura;
 import estructura.Grupo;
+import estructura.GrupoHorario;
 import estructura.Main;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+
+import java.sql.Time;
 
 import static visual.PaginaPrincipalController.alerta;
 
@@ -16,15 +20,14 @@ public class CrearGrupoController {
     @FXML private TextField fieldNumeroGrupo;
     @FXML private ComboBox<String> comboPeriodoAcademico;
     @FXML private Spinner<Integer> spinnerCupos;
-    @FXML private TextField fieldDiasClase;
 
-    // Horas de inicio y fin
-    @FXML private TextField fieldHoraInicio;
+    @FXML private ComboBox<String> comboDiasClase;
+
+    @FXML private Spinner<Integer> spinnerHoraInicio;
     @FXML private ComboBox<String> comboAmPmInicio;
-    @FXML private TextField fieldHoraFin;
+    @FXML private Spinner<Integer> spinnerHoraFin;
     @FXML private ComboBox<String> comboAmPmFin;
 
-    // Selector de Asignatura
     @FXML private ComboBox<Asignatura> comboAsignatura;
 
     @FXML private Button btnCrear;
@@ -32,11 +35,24 @@ public class CrearGrupoController {
 
     @FXML
     public void initialize() {
-        SpinnerValueFactory<Integer> valueFactory =
+        SpinnerValueFactory<Integer> valueFactoryCupos =
                 new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 30);
-        spinnerCupos.setValueFactory(valueFactory);
+        spinnerCupos.setValueFactory(valueFactoryCupos);
+
+        SpinnerValueFactory<Integer> valueFactoryHoraInicio =
+                new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 12, 8);
+        spinnerHoraInicio.setValueFactory(valueFactoryHoraInicio);
+
+        SpinnerValueFactory<Integer> valueFactoryHoraFin =
+                new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 12, 10);
+        spinnerHoraFin.setValueFactory(valueFactoryHoraFin);
 
         comboPeriodoAcademico.setItems(FXCollections.observableArrayList(Main.getInstance().getPeriodos().keySet()));
+
+        comboDiasClase.setItems(FXCollections.observableArrayList(
+                "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"
+        ));
+
         comboAmPmInicio.setItems(FXCollections.observableArrayList("AM", "PM"));
         comboAmPmFin.setItems(FXCollections.observableArrayList("AM", "PM"));
 
@@ -64,21 +80,64 @@ public class CrearGrupoController {
         String numGrupo = fieldNumeroGrupo.getText().trim();
         String periodo = comboPeriodoAcademico.getValue();
         Integer cupos = spinnerCupos.getValue();
-        String dias = fieldDiasClase.getText().trim();
-        String hInicio = fieldHoraInicio.getText().trim();
+        String dias = comboDiasClase.getValue();
+        Integer hInicio = spinnerHoraInicio.getValue();
         String amPmInicio = comboAmPmInicio.getValue();
-        String hFin = fieldHoraFin.getText().trim();
+        Integer hFin = spinnerHoraFin.getValue();
         String amPmFin = comboAmPmFin.getValue();
         Asignatura asignatura = comboAsignatura.getValue();
 
-        if (numGrupo.isEmpty() || periodo == null || dias.isEmpty() ||
-                hInicio.isEmpty() || hFin.isEmpty() || asignatura == null) {
+        if (numGrupo.isEmpty() || periodo == null || dias == null ||
+                hInicio == null || hFin == null || amPmInicio == null ||
+                amPmFin == null || asignatura == null) {
             alerta("Campos incompletos", "Por favor completa todos los campos del formulario.", Alert.AlertType.ERROR);
             return;
         }
 
-        String horarioFinal = String.format("%s %s %s - %s %s", dias, hInicio, amPmInicio, hFin, amPmFin);
+        int numerodia = switch (dias) {
+            case "Lunes"     -> 0;
+            case "Martes"    -> 1;
+            case "Miércoles" -> 2;
+            case "Jueves"    -> 3;
+            case "Viernes"   -> 4;
+            case "Sábado"    -> 5;
+            case "Domingo"   -> 6;
+            default          -> -1;
+        };
+        if (numerodia == -1) {
+            alerta("Error de Día", "Selecciona un día de clase válido.", Alert.AlertType.ERROR);
+            return;
+        }
 
+        int horaInicio24 = hInicio;
+        if ("PM".equalsIgnoreCase(amPmInicio) && hInicio < 12) {
+            horaInicio24 += 12;
+        } else if ("AM".equalsIgnoreCase(amPmInicio) && hInicio == 12) {
+            horaInicio24 = 0;
+        }
+
+        int horaFin24 = hFin;
+        if ("PM".equalsIgnoreCase(amPmFin) && hFin < 12) {
+            horaFin24 += 12;
+        } else if ("AM".equalsIgnoreCase(amPmFin) && hFin == 12) {
+            horaFin24 = 0;
+        }
+
+        Time horaInicial = Time.valueOf(String.format("%02d:00:00", horaInicio24));
+        Time horaFinal   = Time.valueOf(String.format("%02d:00:00", horaFin24));
+
+        // 4. Validaciones de coherencia de horario
+        if (horaInicial.equals(horaFinal)) {
+            alerta("Alerta!!", "El horario debe ser de al menos 1 hora.", Alert.AlertType.ERROR);
+            return;
+        }
+
+        if (horaInicial.after(horaFinal)) {
+            alerta("Alerta!!", "La hora inicial no puede estar después de la hora final!", Alert.AlertType.ERROR);
+            return;
+        }
+
+        String horarioFinal = String.format("%s %d %s - %d %s", dias, hInicio, amPmInicio, hFin, amPmFin);
         Grupo nuevoGrupo = new Grupo(periodo, asignatura.getCodAsignatura(), numGrupo, cupos, horarioFinal);
 
         if (Main.getInstance().existeGrupo(nuevoGrupo.getClaveGrupo())) {
@@ -91,7 +150,10 @@ public class CrearGrupoController {
             return;
         }
 
+        GrupoHorario nuevoHoraGru = new GrupoHorario(periodo, asignatura.getCodAsignatura(), numGrupo, numerodia, horaInicial, horaFinal);
+
         Main.getInstance().guardarGrupo(nuevoGrupo);
+        GrupoHorarioDAO.getInstance().save(nuevoHoraGru);
 
         alerta("Éxito", "Grupo creado correctamente.", Alert.AlertType.INFORMATION);
         cerrarVentana();

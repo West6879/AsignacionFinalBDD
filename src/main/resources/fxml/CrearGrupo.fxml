@@ -20,19 +20,17 @@
 
       <Label layoutX="39.0" layoutY="108.0" style="-fx-text-fill: #495057;" text="Cantidad de cupos" />
       <Spinner fx:id="spinnerCupos" layoutX="162.0" layoutY="104.0" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 4px;" />
-
       <Label layoutX="39.0" layoutY="149.0" style="-fx-text-fill: #495057;" text="Días de clase" />
-      <TextField fx:id="fieldDiasClase" layoutX="162.0" layoutY="145.0" prefWidth="153.0" style="-fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 4px; -fx-background-radius: 4px;" />
-      <Label layoutX="39.0" layoutY="167.0" style="-fx-text-fill: #6c757d; -fx-font-size: 11px;" text="Ej.: Lu, Mi" />
+      <ComboBox fx:id="comboDiasClase" layoutX="162.0" layoutY="145.0" prefWidth="153.0" style="-fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 4px; -fx-background-radius: 4px;" />
 
       <Label layoutX="39.0" layoutY="198.0" style="-fx-text-fill: #495057; -fx-font-weight: bold;" text="Hora" />
 
       <Label layoutX="38.0" layoutY="225.0" style="-fx-text-fill: #495057;" text="De:" />
-      <TextField fx:id="fieldHoraInicio" layoutX="68.0" layoutY="221.0" prefHeight="26.0" prefWidth="64.0" style="-fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 4px; -fx-background-radius: 4px;" />
+      <Spinner fx:id="spinnerHoraInicio" layoutX="68.0" layoutY="221.0" prefHeight="26.0" prefWidth="64.0" style="-fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 4px;" />
       <ComboBox fx:id="comboAmPmInicio" layoutX="138.0" layoutY="221.0" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 4px; -fx-background-radius: 4px;" />
 
       <Label layoutX="41.0" layoutY="262.0" style="-fx-text-fill: #495057;" text="A:" />
-      <TextField fx:id="fieldHoraFin" layoutX="68.0" layoutY="258.0" prefHeight="26.0" prefWidth="64.0" style="-fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 4px; -fx-background-radius: 4px;" />
+      <Spinner fx:id="spinnerHoraFin" layoutX="68.0" layoutY="258.0" prefHeight="26.0" prefWidth="64.0" style="-fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 4px;" />
       <ComboBox fx:id="comboAmPmFin" layoutX="138.0" layoutY="258.0" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 4px; -fx-background-radius: 4px;" />
 
       <Label layoutX="38.0" layoutY="305.0" style="-fx-text-fill: #495057;" text="Asignatura" />
