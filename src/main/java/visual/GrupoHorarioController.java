@@ -68,6 +68,7 @@ public class GrupoHorarioController {
         });
 
         cmbDia.getItems().addAll("Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo");
+        cmbDia.getSelectionModel().selectFirst();
         spinnerHorario(spnHoraInicial);
         spinnerHorario(spnHoraFinal);
 
@@ -87,6 +88,22 @@ public class GrupoHorarioController {
 
         if(horaInicial.equals(horaFinal)) {
             alerta("Alerta!!", "El horario debe ser de al menos 1 hora.", Alert.AlertType.ERROR);
+            return;
+        }
+
+
+        if(existeHorarioExacto(dia, horaInicial, horaFinal)) {
+            alerta("Alerta!!", "Ya existe exactamente ese horario para este grupo!", Alert.AlertType.ERROR);
+            return;
+        }
+
+        if(existeSolapamiento(dia, horaInicial, horaFinal)) {
+            alerta("Alerta!!", "El horario choca con un horario existente!", Alert.AlertType.ERROR);
+            return;
+        }
+
+        if(horaInicial.after(horaFinal)) {
+            alerta("Alerta!!", "La hora inicial no puede estar despues de la hora final!", Alert.AlertType.ERROR);
             return;
         }
 
@@ -114,6 +131,25 @@ public class GrupoHorarioController {
             IO.println("No se elimino la asignatura.");
         }
     }
+
+    private boolean existeHorarioExacto(int dia, Time horaInicial, Time horaFinal) {
+        for(GrupoHorario actual : tablaHorarios.getItems()) {
+            if(actual.getDia() == dia && actual.getHoraInicial().equals(horaInicial) && actual.getHoraFinal().equals(horaFinal)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean existeSolapamiento(int dia, Time horaInicial, Time horaFinal) {
+        for(GrupoHorario actual : tablaHorarios.getItems()) {
+            if(actual.getDia() != dia) continue;
+            boolean seSolapan = horaInicial.before(actual.getHoraFinal()) && horaFinal.after(actual.getHoraInicial());
+            if(seSolapan) return true;
+        }
+        return false;
+    }
+
 
 
     public void setGrupo(Grupo grupoSeleccionado) {
@@ -153,15 +189,15 @@ public class GrupoHorarioController {
                 new SpinnerValueFactory<LocalTime>() {
 
                     {
-                        setValue(LocalTime.of(8, 0));
+                        setValue(LocalTime.of(7, 0));
                     }
 
                     @Override
                     public void decrement(int i) {
                         LocalTime nuevoTiempo = getValue().minusHours(i);
 
-                        if(nuevoTiempo.getHour() < 8) {
-                            nuevoTiempo = LocalTime.of(8, 0);
+                        if(nuevoTiempo.getHour() < 7) {
+                            nuevoTiempo = LocalTime.of(7, 0);
                         }
                         setValue(nuevoTiempo);
                     }

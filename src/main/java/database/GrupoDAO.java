@@ -18,6 +18,29 @@ public class GrupoDAO {
         return INSTANCE;
     }
 
+    public Grupo actualizarHorarioDeGrupo(Grupo grupo) {
+        String sql = "SELECT * FROM Grupo WHERE CodPeriodoAcademico = ? AND CodAsignatura = ? AND NumGrupo = ?";
+        try(Connection connection = DatabaseConnection.getConnection()) {
+            PreparedStatement ps = connection.prepareStatement(sql);
+
+            ps.setString(1, grupo.getCodPeriodoAcademico());
+            ps.setString(2, grupo.getCodAsignatura());
+            ps.setString(3, grupo.getNumGrupo());
+            try(ResultSet rs = ps.executeQuery()) {
+                if(rs.next()) {
+                    return new Grupo(rs.getString("CodPeriodoAcademico"), rs.getString("CodAsignatura"),
+                            rs.getString("NumGrupo"), rs.getInt("CupoGrupo"), rs.getString("Horario"));
+                }
+            } catch(SQLException e) {
+                System.out.println("No se pudo actualizar el horario del grupo: " + e.getMessage());
+            }
+
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     public Map<String, Grupo> findAll() {
         Map<String, Grupo> lista = new HashMap<>();
@@ -71,6 +94,8 @@ public class GrupoDAO {
         }
         return null;
     }
+
+
 
     public void save(Grupo grupo) {
         final String sql = "INSERT INTO Grupo (CodPeriodoAcademico, CodAsignatura, NumGrupo, CupoGrupo, Horario) " +

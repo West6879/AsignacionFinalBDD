@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="625.0" prefWidth="1117.0" style="-fx-background-color: #f8f9fa;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visual.AsignaturaController">
+<AnchorPane prefHeight="628.0" prefWidth="1148.0" style="-fx-background-color: #f8f9fa;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visual.AsignaturaController">
    <children>
       <VBox layoutX="40.0" layoutY="56.0" prefHeight="200.0" prefWidth="120.0" spacing="20.0">
          <children>
@@ -70,7 +70,7 @@
          </children>
       </VBox>
 
-      <TableView fx:id="tablaAsignaturas" layoutX="461.0" layoutY="56.0" prefHeight="521.0" prefWidth="625.0" style="-fx-border-color: #ced4da; -fx-border-radius: 4px;">
+      <TableView fx:id="tablaAsignaturas" layoutX="461.0" layoutY="56.0" prefHeight="522.0" prefWidth="664.0" style="-fx-border-color: #ced4da; -fx-border-radius: 4px;">
          <columns>
             <TableColumn fx:id="colCodigo" prefWidth="75.0" text="Código" />
             <TableColumn fx:id="colNombre" prefWidth="110.0" text="Nombre" />
@@ -78,8 +78,8 @@
             <TableColumn fx:id="colHorasTeoricas" prefWidth="90.0" text="Horas Teóricas" />
             <TableColumn fx:id="colHorasPracticas" prefWidth="95.0" text="Horas Prácticas" />
             <TableColumn fx:id="colActividad" prefWidth="65.0" text="Actividad" />
-            <TableColumn fx:id="colUsuario" prefWidth="65.0" text="Usuario" />
-            <TableColumn fx:id="colFechaHora" prefWidth="63.0" text="Fecha y hora" />
+            <TableColumn fx:id="colUsuario" prefWidth="73.5999755859375" text="Usuario" />
+            <TableColumn fx:id="colFechaHora" prefWidth="91.199951171875" text="Fecha" />
          </columns>
       </TableView>
 

@@ -86,6 +86,7 @@ public class EstudianteController {
         activarBotones();
         habilitarWrapText(colNombreCompleto);
         tablaEstudiantes.getItems().addAll(Main.getInstance().getEstudiantes().values());
+        tablaEstudiantes.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }
 
     @FXML
@@ -202,7 +203,7 @@ public class EstudianteController {
         Stage stage = new Stage();
         stage.initModality(Modality.WINDOW_MODAL);
         stage.setResizable(false);
-        stage.setTitle("Horarios del estudiante: ");
+        stage.setTitle("Horario del estudiante: ");
         stage.setScene(scene);
 
         stage.show();

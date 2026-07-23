@@ -81,6 +81,7 @@ public class AsignaturaController {
         activarBotones();
         habilitarWrapText(colNombre);
         tablaAsignaturas.getItems().addAll(Main.getInstance().getAsignaturas().values());
+        tablaAsignaturas.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }
 
     @FXML

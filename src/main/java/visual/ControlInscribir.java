@@ -1,5 +1,6 @@
 package visual;
 
+import database.InscripcionDAO;
 import estructura.Estudiante;
 import estructura.Grupo;
 import estructura.Inscripcion;
@@ -10,13 +11,22 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.List;
 import java.util.Optional;
+
+import static visual.PaginaPrincipalController.alerta;
 
 public class ControlInscribir {
 
@@ -279,5 +289,30 @@ public class ControlInscribir {
     public void salir(ActionEvent event) {
         Stage stage = (Stage) btnSalir.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    public void btnVerHorarioClicked(ActionEvent event) throws IOException {
+        URL fxmlUrl = GrupoController.class.getResource("/fxml/HorarioDeEstudiante.fxml");
+        if(fxmlUrl == null){
+            throw new IOException("HorarioDeEstudiante.fxml no encontrado.");
+        }
+        FXMLLoader loader = new FXMLLoader(fxmlUrl);
+        Parent root = loader.load();
+
+        Estudiante seleccionado = cbxEst.getSelectionModel().getSelectedItem();
+        PeriodoAcademico periodo = cbxPeriodo.getSelectionModel().getSelectedItem();
+        String codPeriodoAcademico = periodo.getCodPeriodoAcademico();
+
+        HorarioDeEstudianteController controller = loader.getController();
+        controller.cargarHorario(seleccionado.getId(), codPeriodoAcademico);
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.setResizable(false);
+        stage.setTitle("Horario del estudiante: ");
+        stage.setScene(scene);
+
+        stage.show();
     }
 }

@@ -75,7 +75,7 @@ public class GrupoController {
     }
 
     public void refrescarGrupo(Grupo grupo){
-        Grupo grupoActualizado = GrupoDAO.getInstance().actualizarGrupo(grupo);
+        Grupo grupoActualizado = GrupoDAO.getInstance().actualizarHorarioDeGrupo(grupo);
 
         if(grupoActualizado != null){
             Main.getInstance().actualizarGrupo(grupoActualizado);
