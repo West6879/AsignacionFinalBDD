@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 
 import java.sql.Date;
 import java.util.Optional;
@@ -36,6 +37,8 @@ public class AsignaturaController {
     @FXML private TableColumn<Asignatura, String> colActividad;
     @FXML private TableColumn<Asignatura, String> colUsuario;
     @FXML private TableColumn<Asignatura, Date> colFechaHora;
+
+    @FXML private AnchorPane rootPane;
 
     private Asignatura editando = null;
 
@@ -73,6 +76,14 @@ public class AsignaturaController {
         tablaAsignaturas.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue != null) {
                 setAsignatura(newValue);
+            }
+        });
+
+        rootPane.setOnMouseClicked(event -> {
+            if (event.getTarget() == rootPane) {
+                tablaAsignaturas.getSelectionModel().clearSelection();
+                this.editando = null;
+                limpiarCampos();
             }
         });
 

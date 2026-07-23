@@ -11,12 +11,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,6 +51,8 @@ public class EstudianteController {
     @FXML private TableColumn<Estudiante, String> colDireccion;
     @FXML private TableColumn<Estudiante, Date> colFechaDeNacimiento;
 
+    @FXML private AnchorPane rootPane;
+
     private Estudiante editando = null;
 
     @FXML
@@ -62,7 +66,8 @@ public class EstudianteController {
         limiteDeLongitud(fieldSegundoApellido, 25);
         limiteDeLongitud(fieldDireccion, 256);
         datePickerFechaDeNacimiento.getEditor().setEditable(false);
-        limitarFechasFuturas(datePickerFechaDeNacimiento);
+        limitarFechaNacimientoMinimo16Anos(datePickerFechaDeNacimiento);
+        datePickerFechaDeNacimiento.setValue(LocalDate.now().minusYears(16));
 
         tablaEstudiantes.setRowFactory(estudianteTableView -> {
             TableRow<Estudiante> row = new TableRow<>();
@@ -79,6 +84,14 @@ public class EstudianteController {
         tablaEstudiantes.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue != null) {
                 setEstudiante(newValue);
+            }
+        });
+
+        rootPane.setOnMouseClicked(event -> {
+            if (event.getTarget() == rootPane) {
+                tablaEstudiantes.getSelectionModel().clearSelection();
+                this.editando = null;
+                limpiarCampos();
             }
         });
 
@@ -100,6 +113,14 @@ public class EstudianteController {
         String categoriaPago = fieldCategoriaDePago.getText();
         String nacionalidad = fieldNacionalidad.getText();
         String direccion = fieldDireccion.getText();
+        LocalDate fechaNacimientoLocal = datePickerFechaDeNacimiento.getValue();
+
+
+        if (!esMayorDeEdad(fechaNacimientoLocal)) {
+            alerta("Alerta!!", "El estudiante debe tener al menos 16 años.", Alert.AlertType.ERROR);
+            return;
+        }
+
         Date fechaNacimiento = Date.valueOf(datePickerFechaDeNacimiento.getValue());
 
 
@@ -136,6 +157,14 @@ public class EstudianteController {
         String categoriaPago = fieldCategoriaDePago.getText();
         String nacionalidad = fieldNacionalidad.getText();
         String direccion = fieldDireccion.getText();
+
+        LocalDate fechaNacimientoLocal = datePickerFechaDeNacimiento.getValue();
+
+        if (!esMayorDeEdad(fechaNacimientoLocal)) {
+            alerta("Alerta!!", "El estudiante debe tener al menos 16 años.", Alert.AlertType.ERROR);
+            return;
+        }
+
         Date fechaNacimiento = Date.valueOf(datePickerFechaDeNacimiento.getValue());
 
         if(!categoriaPago.matches("^[A-Z1-9]\\d{2}$")) {
@@ -276,7 +305,7 @@ public class EstudianteController {
         fieldCategoriaDePago.clear();
         fieldNacionalidad.clear();
         fieldDireccion.clear();
-        datePickerFechaDeNacimiento.setValue(null);
+        datePickerFechaDeNacimiento.setValue(LocalDate.now().minusYears(16));
     }
 
     private void fieldFormatters() {
@@ -314,6 +343,25 @@ public class EstudianteController {
             }
             return null;
         }));
+    }
+
+    public static void limitarFechaNacimientoMinimo16Anos(DatePicker datePicker) {
+        LocalDate fechaMaxima = LocalDate.now().minusYears(16);
+
+        datePicker.setDayCellFactory(picker -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate fecha, boolean empty) {
+                super.updateItem(fecha, empty);
+                if (fecha != null && fecha.isAfter(fechaMaxima)) {
+                    setDisable(true);
+                    setStyle("-fx-background-color: #f0f0f0;");
+                }
+            }
+        });
+    }
+
+    private boolean esMayorDeEdad(LocalDate fechaNacimiento) {
+        return fechaNacimiento != null && !fechaNacimiento.isAfter(LocalDate.now().minusYears(16));
     }
 
 }

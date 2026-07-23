@@ -8,10 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -93,6 +90,21 @@ public class GrupoController {
         colNumGrupo.setCellValueFactory(new PropertyValueFactory<>("NumGrupo"));
         colCupoGrupo.setCellValueFactory(new PropertyValueFactory<>("CupoGrupo"));
         colHorario.setCellValueFactory(new PropertyValueFactory<>("Horario"));
+
+        colCodPeriodoAcademico.setCellFactory(column -> new TableCell<Grupo, String>() {
+            @Override
+            protected void updateItem(String codigo, boolean empty) {
+                super.updateItem(codigo, empty);
+                if (empty || codigo == null || codigo.length() != 9) {
+                    setText(codigo); // muestra tal cual si no coincide con el formato esperado
+                } else {
+                    String anioInicio = codigo.substring(0, 4);
+                    String anioFin = codigo.substring(4, 8);
+                    String periodo = codigo.substring(8, 9);
+                    setText(anioInicio + "-" + anioFin + "/" + periodo);
+                }
+            }
+        });
     }
 
 
