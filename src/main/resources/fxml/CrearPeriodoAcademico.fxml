@@ -2,27 +2,33 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="523.0" prefWidth="372.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CONTROLLER_NAME">
+<AnchorPane prefHeight="530.0" prefWidth="372.0" style="-fx-background-color: #f8f9fa;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visual.PeriodoController">
    <children>
-      <Label layoutX="7.0" layoutY="6.0" text="Crear Periodo Académico" />
-      <Label layoutX="45.0" layoutY="46.0" text="Código" />
-      <TextField editable="false" layoutX="171.0" layoutY="42.0" prefHeight="26.0" prefWidth="126.0" />
-      <Label layoutX="45.0" layoutY="86.0" text="Fecha Inicio" />
-      <DatePicker layoutX="171.0" layoutY="82.0" prefHeight="26.0" prefWidth="135.0" />
-      <Label layoutX="45.0" layoutY="127.0" text="Fecha Inicio de clases" />
-      <DatePicker layoutX="173.0" layoutY="123.0" prefHeight="26.0" prefWidth="135.0" />
-      <Label layoutX="45.0" layoutY="165.0" text="Fecha fin de clases" />
-      <Label layoutX="45.0" layoutY="200.0" text="Fecha max. prematricula" />
-      <Label layoutX="45.0" layoutY="234.0" text="Fecha lim. retiro" />
-      <Label layoutX="45.0" layoutY="267.0" text="Fecha lim. public. calif." />
-      <DatePicker layoutX="174.0" layoutY="161.0" prefHeight="26.0" prefWidth="135.0" />
-      <DatePicker layoutX="176.0" layoutY="196.0" prefHeight="26.0" prefWidth="135.0" />
-      <DatePicker layoutX="177.0" layoutY="230.0" prefHeight="26.0" prefWidth="135.0" />
-      <DatePicker layoutX="179.0" layoutY="263.0" prefHeight="26.0" prefWidth="135.0" />
-      <Label layoutX="45.0" layoutY="303.0" text="Descripción" />
-      <TextArea layoutX="43.0" layoutY="330.0" prefHeight="147.0" prefWidth="282.0" />
-      <Button layoutX="290.0" layoutY="484.0" mnemonicParsing="false" text="Cancelar" />
-      <Button layoutX="234.0" layoutY="484.0" mnemonicParsing="false" text="Crear" />
+      <Label layoutX="14.0" layoutY="10.0" style="-fx-text-fill: #333333;" text="Crear Periodo Académico">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+
+      <Label layoutX="45.0" layoutY="46.0" style="-fx-text-fill: #495057;" text="Código" />
+      <TextField fx:id="txtCodigo" layoutX="175.0" layoutY="42.0" prefHeight="26.0" prefWidth="150.0" promptText="Ej: 202520261" style="-fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 4px; -fx-background-radius: 4px;" />
+      <Label layoutX="45.0" layoutY="86.0" style="-fx-text-fill: #495057;" text="Fecha Inicio" />
+      <DatePicker fx:id="dpFechaInicio" layoutX="175.0" layoutY="82.0" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 4px;" />
+      <Label layoutX="45.0" layoutY="127.0" style="-fx-text-fill: #495057;" text="Fecha Inicio de clases" />
+      <DatePicker fx:id="dpInicioClases" layoutX="175.0" layoutY="123.0" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 4px;" />
+      <Label layoutX="45.0" layoutY="165.0" style="-fx-text-fill: #495057;" text="Fecha fin de clases" />
+      <DatePicker fx:id="dpFinClases" layoutX="175.0" layoutY="161.0" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 4px;" />
+      <Label layoutX="45.0" layoutY="200.0" style="-fx-text-fill: #495057;" text="Fecha max. prematricula" />
+      <DatePicker fx:id="dpMaxPrematricula" layoutX="175.0" layoutY="196.0" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 4px;" />
+      <Label layoutX="45.0" layoutY="234.0" style="-fx-text-fill: #495057;" text="Fecha lim. retiro" />
+      <DatePicker fx:id="dpLimRetiro" layoutX="175.0" layoutY="230.0" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 4px;" />
+      <Label layoutX="45.0" layoutY="267.0" style="-fx-text-fill: #495057;" text="Fecha lim. public. calif." />
+      <DatePicker fx:id="dpLimPublicacion" layoutX="175.0" layoutY="263.0" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 4px;" />
+      <Label layoutX="45.0" layoutY="303.0" style="-fx-text-fill: #495057;" text="Descripción" />
+      <TextArea fx:id="txtDescripcion" layoutX="43.0" layoutY="325.0" prefHeight="140.0" prefWidth="282.0" style="-fx-border-color: #ced4da; -fx-border-radius: 4px;" />
+      <Button fx:id="btnCrear" layoutX="155.0" layoutY="480.0" mnemonicParsing="false" onAction="#crearPeriodo" prefHeight="32.0" prefWidth="80.0" style="-fx-background-color: white; -fx-border-color: #007bff; -fx-border-width: 2px; -fx-border-radius: 6px; -fx-background-radius: 6px; -fx-text-fill: #007bff; -fx-font-weight: bold; -fx-cursor: hand;" text="Crear" />
+      <Button fx:id="btnCancelar" layoutX="245.0" layoutY="480.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="32.0" prefWidth="80.0" style="-fx-background-color: white; -fx-border-color: #007bff; -fx-border-width: 2px; -fx-border-radius: 6px; -fx-background-radius: 6px; -fx-text-fill: #007bff; -fx-font-weight: bold; -fx-cursor: hand;" text="Cancelar" />
    </children>
 </AnchorPane>

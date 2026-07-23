@@ -2,29 +2,43 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="364.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CONTROLLER_NAME">
+<AnchorPane prefHeight="410.0" prefWidth="364.0" style="-fx-background-color: #f8f9fa;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visual.CrearGrupoController">
    <children>
-      <Label layoutX="7.0" layoutY="6.0" text="Crear grupo" />
-      <Label layoutX="39.0" layoutY="65.0" text="Periodo Académico" />
-      <ComboBox layoutX="162.0" layoutY="63.0" prefWidth="150.0" />
-      <Label layoutX="223.0" layoutY="24.0" text="No." />
-      <TextField layoutX="251.0" layoutY="20.0" prefHeight="26.0" prefWidth="64.0" />
-      <Label layoutX="39.0" layoutY="110.0" text="Cantidad de cupos" />
-      <Spinner layoutX="163.0" layoutY="106.0" prefHeight="26.0" prefWidth="79.0" />
-      <Label layoutX="39.0" layoutY="151.0" text="Días de clase" />
-      <TextField layoutX="163.0" layoutY="147.0" />
-      <Label layoutX="39.0" layoutY="164.0" text="Ej.: Lu, Mi" />
-      <Label layoutX="39.0" layoutY="200.0" text="Hora" />
-      <Label layoutX="38.0" layoutY="227.0" text="De:" />
-      <TextField layoutX="68.0" layoutY="223.0" prefHeight="26.0" prefWidth="64.0" />
-      <ComboBox layoutX="138.0" layoutY="223.0" prefHeight="26.0" prefWidth="10.0" />
-      <Label layoutX="41.0" layoutY="264.0" text="A:" />
-      <ComboBox layoutX="138.0" layoutY="260.0" prefHeight="26.0" prefWidth="50.0" />
-      <TextField layoutX="68.0" layoutY="261.0" prefHeight="26.0" prefWidth="64.0" />
-      <Label layoutX="38.0" layoutY="312.0" text="Asignatura" />
-      <ComboBox layoutX="162.0" layoutY="308.0" prefWidth="150.0" />
-      <Button layoutX="289.0" layoutY="361.0" mnemonicParsing="false" text="Cancelar" />
-      <Button layoutX="232.0" layoutY="361.0" mnemonicParsing="false" text="Crear" />
+      <Label layoutX="14.0" layoutY="10.0" style="-fx-text-fill: #333333;" text="Crear grupo">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+
+      <Label layoutX="223.0" layoutY="24.0" style="-fx-text-fill: #495057;" text="No." />
+      <TextField fx:id="fieldNumeroGrupo" layoutX="251.0" layoutY="20.0" prefHeight="26.0" prefWidth="64.0" style="-fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 4px; -fx-background-radius: 4px;" />
+
+      <Label layoutX="39.0" layoutY="65.0" style="-fx-text-fill: #495057;" text="Periodo Académico" />
+      <ComboBox fx:id="comboPeriodoAcademico" layoutX="162.0" layoutY="61.0" prefWidth="153.0" style="-fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 4px; -fx-background-radius: 4px;" />
+
+      <Label layoutX="39.0" layoutY="108.0" style="-fx-text-fill: #495057;" text="Cantidad de cupos" />
+      <Spinner fx:id="spinnerCupos" layoutX="162.0" layoutY="104.0" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 4px;" />
+
+      <Label layoutX="39.0" layoutY="149.0" style="-fx-text-fill: #495057;" text="Días de clase" />
+      <TextField fx:id="fieldDiasClase" layoutX="162.0" layoutY="145.0" prefWidth="153.0" style="-fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 4px; -fx-background-radius: 4px;" />
+      <Label layoutX="39.0" layoutY="167.0" style="-fx-text-fill: #6c757d; -fx-font-size: 11px;" text="Ej.: Lu, Mi" />
+
+      <Label layoutX="39.0" layoutY="198.0" style="-fx-text-fill: #495057; -fx-font-weight: bold;" text="Hora" />
+
+      <Label layoutX="38.0" layoutY="225.0" style="-fx-text-fill: #495057;" text="De:" />
+      <TextField fx:id="fieldHoraInicio" layoutX="68.0" layoutY="221.0" prefHeight="26.0" prefWidth="64.0" style="-fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 4px; -fx-background-radius: 4px;" />
+      <ComboBox fx:id="comboAmPmInicio" layoutX="138.0" layoutY="221.0" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 4px; -fx-background-radius: 4px;" />
+
+      <Label layoutX="41.0" layoutY="262.0" style="-fx-text-fill: #495057;" text="A:" />
+      <TextField fx:id="fieldHoraFin" layoutX="68.0" layoutY="258.0" prefHeight="26.0" prefWidth="64.0" style="-fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 4px; -fx-background-radius: 4px;" />
+      <ComboBox fx:id="comboAmPmFin" layoutX="138.0" layoutY="258.0" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 4px; -fx-background-radius: 4px;" />
+
+      <Label layoutX="38.0" layoutY="305.0" style="-fx-text-fill: #495057;" text="Asignatura" />
+      <ComboBox fx:id="comboAsignatura" layoutX="162.0" layoutY="301.0" prefWidth="153.0" style="-fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 4px; -fx-background-radius: 4px;" />
+
+      <Button fx:id="btnCrear" layoutX="145.0" layoutY="355.0" mnemonicParsing="false" onAction="#btnCrearClicked" prefHeight="32.0" prefWidth="80.0" style="-fx-background-color: white; -fx-border-color: #007bff; -fx-border-width: 2px; -fx-border-radius: 6px; -fx-background-radius: 6px; -fx-text-fill: #007bff; -fx-font-weight: bold; -fx-cursor: hand;" text="Crear" />
+      <Button fx:id="btnCancelar" layoutX="235.0" layoutY="355.0" mnemonicParsing="false" onAction="#btnCancelarClicked" prefHeight="32.0" prefWidth="80.0" style="-fx-background-color: white; -fx-border-color: #007bff; -fx-border-width: 2px; -fx-border-radius: 6px; -fx-background-radius: 6px; -fx-text-fill: #007bff; -fx-font-weight: bold; -fx-cursor: hand;" text="Cancelar" />
    </children>
 </AnchorPane>

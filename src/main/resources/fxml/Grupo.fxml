@@ -5,17 +5,17 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="553.0" prefWidth="948.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visual.GrupoController">
-   <children>
-      <TableView fx:id="tablaGrupos" layoutX="275.0" layoutY="27.0" prefHeight="502.0" prefWidth="658.0">
-        <columns>
-          <TableColumn fx:id="colCodPeriodoAcademico" prefWidth="119.20001220703125" text="Periodo Academico" />
-          <TableColumn fx:id="colCodAsignatura" prefWidth="93.60003662109375" text="Asignatura" />
-            <TableColumn fx:id="colNumGrupo" minWidth="0.0" prefWidth="105.5999755859375" text="Numero Grupo" />
-            <TableColumn fx:id="colCupoGrupo" prefWidth="86.4000244140625" text="Cupos" />
-            <TableColumn fx:id="colHorario" prefWidth="252.0" text="Horario" />
-        </columns>
-      </TableView>
-      <Button fx:id="btnSeleccionar" layoutX="99.0" layoutY="255.0" mnemonicParsing="false" onAction="#btnSeleccionarClicked" prefHeight="46.0" prefWidth="101.0" text="Seleccionar" />
-   </children>
+<AnchorPane prefHeight="553.0" prefWidth="948.0" style="-fx-background-color: #f8f9fa;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visual.GrupoController">
+    <children>
+        <TableView fx:id="tablaGrupos" layoutX="265.0" layoutY="25.0" prefHeight="502.0" prefWidth="658.0" style="-fx-border-color: #ced4da; -fx-border-radius: 4px;">
+            <columns>
+                <TableColumn fx:id="colCodPeriodoAcademico" prefWidth="120.0" text="Periodo Académico" />
+                <TableColumn fx:id="colCodAsignatura" prefWidth="95.0" text="Asignatura" />
+                <TableColumn fx:id="colNumGrupo" minWidth="0.0" prefWidth="105.0" text="Número Grupo" />
+                <TableColumn fx:id="colCupoGrupo" prefWidth="85.0" text="Cupos" />
+                <TableColumn fx:id="colHorario" prefWidth="250.0" text="Horario" />
+            </columns>
+        </TableView>
+        <Button fx:id="btnSeleccionar" layoutX="80.0" layoutY="253.0" mnemonicParsing="false" onAction="#btnSeleccionarClicked" prefHeight="46.0" prefWidth="120.0" style="-fx-background-color: white; -fx-border-color: #007bff; -fx-border-width: 2px; -fx-border-radius: 6px; -fx-background-radius: 6px; -fx-text-fill: #007bff; -fx-font-weight: bold; -fx-cursor: hand;" text="Seleccionar" />
+    </children>
 </AnchorPane>

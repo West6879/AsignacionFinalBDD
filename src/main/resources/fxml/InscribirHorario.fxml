@@ -2,37 +2,43 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="528.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visual.ControlInscribir">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="540.0" style="-fx-background-color: #f8f9fa;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visual.ControlInscribir">
     <children>
-        <Label layoutX="6.0" layoutY="6.0" text="Inscripción de grupos" />
-        <Button fx:id="btnVerHorario" layoutX="424.0" layoutY="14.0" mnemonicParsing="false" text="Ver horario" />
+        <Label layoutX="14.0" layoutY="10.0" style="-fx-text-fill: #333333;" text="Inscripción de grupos">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
 
-        <Label layoutX="34.0" layoutY="46.0" text="Seleccione un estudiante" />
-        <ComboBox fx:id="cbxEst" layoutX="34.0" layoutY="64.0" prefWidth="150.0" />
+        <Button fx:id="btnVerHorario" layoutX="414.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="102.0" style="-fx-background-color: white; -fx-border-color: #007bff; -fx-border-width: 2px; -fx-border-radius: 6px; -fx-background-radius: 6px; -fx-text-fill: #007bff; -fx-font-weight: bold; -fx-cursor: hand;" text="Ver horario" />
 
-        <!-- Grupos Disponibles -->
-        <Label layoutX="34.0" layoutY="123.0" text="Grupos disponibles" />
-        <TableView fx:id="tvGrupDisp" layoutX="34.0" layoutY="141.0" prefHeight="200.0" prefWidth="246.0">
+        <Label layoutX="34.0" layoutY="46.0" style="-fx-text-fill: #495057;" text="Seleccione un estudiante" />
+        <ComboBox fx:id="cbxEst" layoutX="34.0" layoutY="65.0" prefHeight="26.0" prefWidth="132.0" style="-fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 4px; -fx-background-radius: 4px;" />
+
+        <Label layoutX="177.0" layoutY="46.0" style="-fx-text-fill: #495057;" text="Periodo" />
+        <ComboBox fx:id="cbxPeriodo" layoutX="177.0" layoutY="65.0" prefHeight="26.0" prefWidth="102.0" style="-fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 4px; -fx-background-radius: 4px;" />
+
+        <Label layoutX="34.0" layoutY="115.0" style="-fx-text-fill: #495057; -fx-font-weight: bold;" text="Grupos disponibles" />
+        <TableView fx:id="tvGrupDisp" layoutX="34.0" layoutY="135.0" prefHeight="200.0" prefWidth="246.0" style="-fx-border-color: #ced4da; -fx-border-radius: 4px;">
             <columns>
-                <TableColumn fx:id="colDispId" prefWidth="60.0" text="No." />
-                <TableColumn fx:id="colDispNombre" prefWidth="111.0" text="Materia" />
-                <TableColumn fx:id="colDispHorario" prefWidth="74.60003662109375" text="Horario" />
+                <TableColumn fx:id="colDispId" prefWidth="50.0" text="No." />
+                <TableColumn fx:id="colDispNombre" prefWidth="100.0" text="Materia" />
+                <TableColumn fx:id="colDispHorario" prefWidth="94.0" text="Horario" />
             </columns>
         </TableView>
 
-        <!-- Grupos Inscritos -->
-        <Label layoutX="300.0" layoutY="46.0" text="Grupos inscritos" />
-        <TableView fx:id="tvGrupInsc" layoutX="300.0" layoutY="64.0" prefHeight="277.0" prefWidth="200.0">
+        <Label layoutX="300.0" layoutY="46.0" style="-fx-text-fill: #495057; -fx-font-weight: bold;" text="Grupos inscritos" />
+        <TableView fx:id="tvGrupInsc" layoutX="300.0" layoutY="65.0" prefHeight="270.0" prefWidth="216.0" style="-fx-border-color: #ced4da; -fx-border-radius: 4px;">
             <columns>
-                <TableColumn fx:id="colInscId" prefWidth="60.0" text="No." />
-                <TableColumn fx:id="colInscNombre" prefWidth="138.0" text="Materia" />
+                <TableColumn fx:id="colInscId" prefWidth="55.0" text="No." />
+                <TableColumn fx:id="colInscNombre" prefWidth="158.0" text="Materia" />
             </columns>
         </TableView>
 
-        <!-- Botones de Acción -->
-        <Button fx:id="btnAgregar" layoutX="177.0" layoutY="359.0" mnemonicParsing="false" onAction="#agregarGrupo" prefHeight="26.0" prefWidth="102.0" text="Agregar grupo" />
-        <Button fx:id="btnEliminar" layoutX="300.0" layoutY="359.0" mnemonicParsing="false" onAction="#eliminarInscripcion" text="Eliminar inscripción" />
-        <Button fx:id="btnSalir" layoutX="460.0" layoutY="359.0" mnemonicParsing="false" text="Salir" />
+        <Button fx:id="btnAgregar" layoutX="158.0" layoutY="355.0" mnemonicParsing="false" onAction="#agregarGrupo" prefHeight="35.0" prefWidth="122.0" style="-fx-background-color: white; -fx-border-color: #007bff; -fx-border-width: 2px; -fx-border-radius: 6px; -fx-background-radius: 6px; -fx-text-fill: #007bff; -fx-font-weight: bold; -fx-cursor: hand;" text="Agregar grupo" />
+        <Button fx:id="btnEliminar" layoutX="300.0" layoutY="355.0" mnemonicParsing="false" onAction="#eliminarInscripcion" prefHeight="35.0" prefWidth="135.0" style="-fx-background-color: white; -fx-border-color: #007bff; -fx-border-width: 2px; -fx-border-radius: 6px; -fx-background-radius: 6px; -fx-text-fill: #007bff; -fx-font-weight: bold; -fx-cursor: hand;" text="Eliminar inscripción" />
+        <Button fx:id="btnSalir" layoutX="446.0" layoutY="355.0" mnemonicParsing="false" onAction="#salir" prefHeight="35.0" prefWidth="70.0" style="-fx-background-color: white; -fx-border-color: #007bff; -fx-border-width: 2px; -fx-border-radius: 6px; -fx-background-radius: 6px; -fx-text-fill: #007bff; -fx-font-weight: bold; -fx-cursor: hand;" text="Salir" />
     </children>
 </AnchorPane>

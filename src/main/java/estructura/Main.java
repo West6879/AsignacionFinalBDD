@@ -1,9 +1,6 @@
 package estructura;
 
-import database.AsignaturaDAO;
-import database.EstudianteDAO;
-import database.GrupoDAO;
-import database.InscripcionDAO;
+import database.*;
 
 import java.util.*;
 
@@ -14,6 +11,7 @@ public class Main {
     private final Map<String, Asignatura> asignaturas;
     private final Map<String, Grupo> grupos;
     private final HashSet<Inscripcion> inscripciones;
+    private final Map<String, PeriodoAcademico> periodos;
 
     static void main() {
 
@@ -36,6 +34,7 @@ public class Main {
         this.asignaturas = new HashMap<>();
         this.grupos = new HashMap<>();
         this.inscripciones = new HashSet<>();
+        this.periodos = new HashMap<>();
 
         cargarDatos();
     }
@@ -58,10 +57,15 @@ public class Main {
         InscripcionDAO inscripcionDAO = InscripcionDAO.getInstance();
         IO.println("inscripciones cargadas!!");
 
+        IO.println("Cargando Periodos!!");
+        PeriodoAcademicoDAO PeriodoAcademicoDAO1 = PeriodoAcademicoDAO.getInstance();
+        IO.println("Periodos cargados!!");
+
         this.estudiantes.putAll(estudianteDAO.findAll());
         this.asignaturas.putAll(asignaturaDAO.findAll());
         this.grupos.putAll(grupoDAO.findAll());
         this.inscripciones.addAll(inscripcionDAO.findAll());
+        this.periodos.putAll(PeriodoAcademicoDAO1.findAll());
     }
 
     public void guardarEstudiante(Estudiante estudiante) {
@@ -100,7 +104,7 @@ public class Main {
 
     public void guardarInscripcion(Inscripcion inscripcion){
         String claveGrupo = inscripcion.getCodPeriodoAcademico() + "|" + inscripcion.getCodAsignatura() + "|" + inscripcion.getNumGrupo();
-        Grupo objetivo = grupos.get(claveGrupo);        objetivo.setCupoGrupo(objetivo.getCupoGrupo()-1);
+        Grupo objetivo = grupos.get(claveGrupo);
         this.grupos.put(objetivo.getClaveGrupo(), objetivo);
         GrupoDAO.getInstance().actualizarGrupo(objetivo);
         this.inscripciones.add(inscripcion);
@@ -110,11 +114,32 @@ public class Main {
     public void eliminarInscripcion(Inscripcion inscripcion){
         String claveGrupo = inscripcion.getCodPeriodoAcademico() + "|" + inscripcion.getCodAsignatura() + "|" + inscripcion.getNumGrupo();
         Grupo objetivo = grupos.get(claveGrupo);
-        objetivo.setCupoGrupo(objetivo.getCupoGrupo()+1);
         GrupoDAO.getInstance().actualizarGrupo(objetivo);
         this.grupos.put(objetivo.getClaveGrupo(), objetivo);
         this.inscripciones.remove(inscripcion);
         InscripcionDAO.getInstance().delete(inscripcion.getCodPeriodoAcademico(), inscripcion.getId(), inscripcion.getCodAsignatura(), inscripcion.getNumGrupo());
+    }
+
+    public void guardarGrupo(Grupo grupo) {
+        this.grupos.put(grupo.getClaveGrupo(), grupo);
+        GrupoDAO.getInstance().save(grupo);
+    }
+
+    public boolean existeGrupo(String claveGrupo) {
+        return this.grupos.containsKey(claveGrupo);
+    }
+
+    public void guardarPeriodo(PeriodoAcademico periodo) {
+        this.periodos.put(periodo.getCodPeriodoAcademico(), periodo);
+        database.PeriodoAcademicoDAO.getInstance().save(periodo);
+    }
+
+    public Map<String, PeriodoAcademico> getPeriodos() {
+        return periodos;
+    }
+
+    public boolean existePeriodo(String codigo) {
+        return this.periodos.containsKey(codigo);
     }
 
     public boolean existeAsignatura(String id) {

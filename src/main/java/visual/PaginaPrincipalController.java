@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -19,18 +20,13 @@ import java.time.LocalDate;
 
 public class PaginaPrincipalController extends Application {
 
-    @FXML private AnchorPane rootPane;
-
-
-
+    @FXML private StackPane rootPane;
     @Override
     public void start(Stage primaryStage) throws IOException {
 
         Scene scene = setupPrincipal();
         scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
         primaryStage.setScene(scene);
-
-
         primaryStage.setMaximized(true);
         primaryStage.show();
     }
@@ -150,6 +146,63 @@ public class PaginaPrincipalController extends Application {
         stage.initModality(Modality.WINDOW_MODAL);
         stage.setResizable(false);
         stage.setTitle("Inscripción de grupos");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    public void btnCrearGrupo(ActionEvent event) throws IOException {
+        URL fxmlUrl = PaginaPrincipalController.class.getResource("/fxml/CrearGrupo.fxml");
+        if (fxmlUrl == null) {
+            throw new IOException("CrearGrupo.fxml no encontrado.");
+        }
+        FXMLLoader loader = new FXMLLoader(fxmlUrl);
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        Window owner = rootPane.getScene().getWindow();
+        stage.initOwner(owner);
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.setResizable(false);
+        stage.setTitle("Creación de grupos");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    public void btnCrearPeriodo(ActionEvent event) throws IOException {
+        URL fxmlUrl = PaginaPrincipalController.class.getResource("/fxml/CrearPeriodoAcademico.fxml");
+        if (fxmlUrl == null) {
+            throw new IOException("CrearPeriodoAcademico.fxml no encontrado.");
+        }
+        FXMLLoader loader = new FXMLLoader(fxmlUrl);
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        Window owner = rootPane.getScene().getWindow();
+        stage.initOwner(owner);
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.setResizable(false);
+        stage.setTitle("Creación de Periodos Academicos");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    public void btnVerInforme(ActionEvent event) throws IOException {
+        URL fxmlUrl = PaginaPrincipalController.class.getResource("/fxml/InformeInscripcion.fxml");
+        if (fxmlUrl == null) {
+            throw new IOException("InformeInscripcion.fxml no encontrado.");
+        }
+        FXMLLoader loader = new FXMLLoader(fxmlUrl);
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        Window owner = rootPane.getScene().getWindow();
+        stage.initOwner(owner);
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.setResizable(false);
+        stage.setTitle("Informe de inscripción");
         stage.setScene(scene);
         stage.show();
     }

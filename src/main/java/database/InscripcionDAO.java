@@ -18,7 +18,7 @@ public class InscripcionDAO {
     }
 
     public void save(Inscripcion inscripcion) {
-        final String sql = "INSERT INTO Inscripcion (CodPeriodoAcademico, IdEstudiante, CodAsignatura, NumGrupo) " +
+        final String sql = "INSERT INTO Inscripcion (CodPeriodoAcademico, Id, CodAsignatura, NumGrupo) " +
                 "VALUES (?, ?, ?, ?)";
 
         try (Connection connection = DatabaseConnection.getConnection()) {
@@ -34,14 +34,14 @@ public class InscripcionDAO {
         }
     }
 
-    public void delete(String codPeriodo, String idEstudiante, String codAsignatura, String numGrupo) {
-        final String sql = "DELETE FROM Inscripcion WHERE CodPeriodoAcademico = ? AND IdEstudiante = ? " +
+    public void delete(String codPeriodo, String Id, String codAsignatura, String numGrupo) {
+        final String sql = "DELETE FROM Inscripcion WHERE CodPeriodoAcademico = ? AND Id = ? " +
                 "AND CodAsignatura = ? AND NumGrupo = ?";
 
         try (Connection connection = DatabaseConnection.getConnection()) {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, codPeriodo);
-            ps.setString(2, idEstudiante);
+            ps.setString(2, Id);
             ps.setString(3, codAsignatura);
             ps.setString(4, numGrupo);
             ps.executeUpdate();
@@ -53,7 +53,7 @@ public class InscripcionDAO {
 
     public List<Inscripcion> findByEstudiante(String idEstudiante) {
         List<Inscripcion> lista = new ArrayList<>();
-        final String sql = "SELECT * FROM Inscripcion WHERE IdEstudiante = ?";
+        final String sql = "SELECT * FROM Inscripcion WHERE Id = ?";
 
         try (Connection connection = DatabaseConnection.getConnection()) {
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -63,7 +63,7 @@ public class InscripcionDAO {
             while (resultSet.next()) {
                 Inscripcion inscripcion = new Inscripcion(
                         resultSet.getString("CodPeriodoAcademico"),
-                        resultSet.getString("IdEstudiante"),
+                        resultSet.getString("Id"),
                         resultSet.getString("CodAsignatura"),
                         resultSet.getString("NumGrupo")
                 );
@@ -88,7 +88,7 @@ public class InscripcionDAO {
             while (resultSet.next()) {
                 Inscripcion inscripcion = new Inscripcion(
                         resultSet.getString("CodPeriodoAcademico"),
-                        resultSet.getString("IdEstudiante"),
+                        resultSet.getString("Id"),
                         resultSet.getString("CodAsignatura"),
                         resultSet.getString("NumGrupo")
                 );
