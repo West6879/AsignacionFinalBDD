@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="625.0" prefWidth="1117.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visual.AsignaturaController">
+<AnchorPane prefHeight="625.0" prefWidth="1173.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visual.AsignaturaController">
    <children>
       <VBox layoutX="40.0" layoutY="56.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
          <children>
@@ -69,16 +69,16 @@
             <DatePicker fx:id="datePickerFechaHora" prefHeight="26.0" prefWidth="269.0" />
          </children>
       </VBox>
-      <TableView fx:id="tablaAsignaturas" layoutX="461.0" layoutY="56.0" prefHeight="521.0" prefWidth="625.0">
+      <TableView fx:id="tablaAsignaturas" layoutX="461.0" layoutY="56.0" prefHeight="522.0" prefWidth="702.0">
         <columns>
           <TableColumn fx:id="colCodigo" prefWidth="66.0" text="Codigo" />
-          <TableColumn fx:id="colNombre" prefWidth="84.0" text="Nombre" />
-            <TableColumn fx:id="colCreditos" prefWidth="61.0" text="Creditos" />
-            <TableColumn fx:id="colHorasTeoricas" prefWidth="89.0" text="Horas Teoricas" />
-            <TableColumn fx:id="colHorasPracticas" prefWidth="102.0" text="Horas Practicas" />
-            <TableColumn fx:id="colActividad" prefWidth="68.0" text="Actividad" />
-            <TableColumn fx:id="colUsuario" prefWidth="64.0" text="Usuario" />
-            <TableColumn fx:id="colFechaHora" prefWidth="90.0" text="Fecha y hora" />
+          <TableColumn fx:id="colNombre" prefWidth="101.5999755859375" text="Nombre" />
+            <TableColumn fx:id="colCreditos" prefWidth="72.800048828125" text="Creditos" />
+            <TableColumn fx:id="colHorasTeoricas" prefWidth="92.800048828125" text="Horas Teoricas" />
+            <TableColumn fx:id="colHorasPracticas" prefWidth="97.60003662109375" text="Horas Practicas" />
+            <TableColumn fx:id="colActividad" text="Actividad" />
+            <TableColumn fx:id="colUsuario" prefWidth="88.800048828125" text="Usuario" />
+            <TableColumn fx:id="colFechaHora" prefWidth="98.39999999999998" text="Fecha y hora" />
         </columns>
       </TableView>
       <Button fx:id="btnInsertar" layoutX="63.0" layoutY="490.0" mnemonicParsing="false" onAction="#guardarAsignatura" text="Insertar" />

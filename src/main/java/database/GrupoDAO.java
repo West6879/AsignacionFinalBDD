@@ -8,9 +8,9 @@ import java.util.Map;
 
 public class GrupoDAO {
 
-    public static final GrupoDAO INSTANCE = new GrupoDAO();
+    private static final GrupoDAO INSTANCE = new GrupoDAO();
 
-    public GrupoDAO() {
+    private GrupoDAO() {
 
     }
 

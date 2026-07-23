@@ -91,8 +91,9 @@
             <TableColumn fx:id="colFechaDeNacimiento" prefWidth="121.0" text="Fecha de nacimiento" />
         </columns>
       </TableView>
-      <Button fx:id="btnInsertar" layoutX="63.0" layoutY="490.0" mnemonicParsing="false" onAction="#guardarEstudiante" text="Insertar" />
-      <Button fx:id="btnActualizar" layoutX="154.0" layoutY="490.0" mnemonicParsing="false" onAction="#btnActualizarClicked" text="Actualizar" />
-      <Button fx:id="btnEliminar" layoutX="259.0" layoutY="490.0" mnemonicParsing="false" onAction="#btnEliminarClicked" text="Eliminar" />
+      <Button fx:id="btnInsertar" layoutX="81.0" layoutY="484.0" mnemonicParsing="false" onAction="#guardarEstudiante" prefHeight="37.0" prefWidth="84.0" text="Insertar" />
+      <Button fx:id="btnActualizar" layoutX="277.0" layoutY="483.0" mnemonicParsing="false" onAction="#btnActualizarClicked" prefHeight="38.0" prefWidth="84.0" text="Actualizar" />
+      <Button fx:id="btnEliminar" layoutX="81.0" layoutY="546.0" mnemonicParsing="false" onAction="#btnEliminarClicked" prefHeight="38.0" prefWidth="84.0" text="Eliminar" />
+      <Button fx:id="btnHorario" layoutX="277.0" layoutY="546.0" mnemonicParsing="false" onAction="#btnHorarioClicked" prefHeight="38.0" prefWidth="84.0" text="Horario" />
    </children>
 </AnchorPane>

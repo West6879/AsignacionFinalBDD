@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="613.0" prefWidth="869.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visual.HorarioDeEstudianteController">
+   <children>
+      <TableView fx:id="tablaHorario" layoutX="27.0" layoutY="21.0" prefHeight="578.0" prefWidth="830.0">
+        <columns>
+          <TableColumn fx:id="col1" prefWidth="113.60003089904785" text="Col1" />
+          <TableColumn fx:id="col2" prefWidth="111.2000732421875" text="Col2" />
+            <TableColumn fx:id="col3" prefWidth="102.39996337890625" text="Col3" />
+            <TableColumn fx:id="col4" prefWidth="119.20001220703125" text="Col4" />
+            <TableColumn fx:id="col5" prefWidth="116.80007934570312" text="Col5" />
+            <TableColumn fx:id="col6" prefWidth="137.60003662109375" text="Col6" />
+            <TableColumn fx:id="col7" prefWidth="122.4000244140625" text="Col7" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

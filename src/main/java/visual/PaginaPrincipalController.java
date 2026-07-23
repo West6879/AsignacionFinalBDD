@@ -1,5 +1,6 @@
 package visual;
 
+import estructura.FilaDeHorario;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -45,6 +46,10 @@ public class PaginaPrincipalController extends Application {
         Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage stage = new Stage();
+        URL cssUrl = getClass().getResource("/css/tablas.css");
+        if(cssUrl != null){
+            scene.getStylesheets().add(cssUrl.toExternalForm());
+        }
         Window owner = rootPane.getScene().getWindow();
         stage.initOwner(owner);
         stage.initModality(Modality.WINDOW_MODAL);
@@ -64,6 +69,10 @@ public class PaginaPrincipalController extends Application {
         Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage stage = new Stage();
+        URL cssUrl = getClass().getResource("/css/tablas.css");
+        if(cssUrl != null){
+            scene.getStylesheets().add(cssUrl.toExternalForm());
+        }
         Window owner = rootPane.getScene().getWindow();
         stage.initOwner(owner);
         stage.initModality(Modality.WINDOW_MODAL);
@@ -152,5 +161,28 @@ public class PaginaPrincipalController extends Application {
         stage.setTitle("Inscripción de grupos");
         stage.setScene(scene);
         stage.show();
+    }
+
+    public static <S, T>void habilitarWrapText(TableColumn<S, T> columna) {
+        columna.setCellFactory(col -> new TableCell<S, T>() {
+            private final Label label = new Label();
+
+            {
+                label.setWrapText(true);
+                label.setTextOverrun(OverrunStyle.CLIP);
+                label.prefWidthProperty().bind(col.widthProperty().subtract(10));
+            }
+
+            @Override
+            protected void updateItem(T item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setGraphic(null);
+                } else {
+                    label.setText(item.toString());
+                    setGraphic(label);
+                }
+            }
+        });
     }
 }
