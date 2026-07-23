@@ -77,6 +77,23 @@ public class InscripcionDAO {
         return lista;
     }
 
+    public List<String> getPeriodosDeEstudiante(String idEstudiante) {
+        List<String> periodos = new ArrayList<>();
+        String sql = "SELECT DISTINCT CodPeriodoAcademico FROM Inscripcion WHERE Id = ?";
+        try(Connection connection = DatabaseConnection.getConnection()) {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, idEstudiante);
+            try(ResultSet rs = ps.executeQuery()) {
+                while(rs.next()) {
+                    periodos.add(rs.getString("CodPeriodoAcademico"));
+                }
+            }
+        } catch(SQLException e) {
+            IO.println("No se encontró inscripciones del estudiante:" + e.getMessage());
+        }
+        return periodos;
+    }
+
     public List<Inscripcion> findAll() {
         List<Inscripcion> lista = new ArrayList<>();
         final String sql = "SELECT * FROM Inscripcion";

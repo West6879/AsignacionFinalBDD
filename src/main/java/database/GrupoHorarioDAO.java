@@ -11,9 +11,9 @@ import java.util.List;
 
 public class GrupoHorarioDAO {
 
-    public static final GrupoHorarioDAO INSTANCE = new GrupoHorarioDAO();
+    private static final GrupoHorarioDAO INSTANCE = new GrupoHorarioDAO();
 
-    public GrupoHorarioDAO() {
+    private GrupoHorarioDAO() {
 
     }
 

@@ -8,9 +8,9 @@ import java.util.*;
 
 public class EstudianteDAO {
 
-    public static final EstudianteDAO INSTANCE = new EstudianteDAO();
+    private static final EstudianteDAO INSTANCE = new EstudianteDAO();
 
-    public EstudianteDAO() {
+    private EstudianteDAO() {
     }
 
     public static EstudianteDAO getInstance() { return INSTANCE;}

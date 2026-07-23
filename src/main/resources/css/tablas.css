@@ -1,0 +1,19 @@
+.table-view .table-cell {
+    -fx-wrap-text: true;
+    -fx-alignment: CENTER-LEFT;
+}
+
+.table-view .column-header .label {
+    -fx-wrap-text: true;
+    -fx-text-alignment: center;
+    -fx-alignment: CENTER;
+}
+
+.table-view .column-header,
+.table-view .filler {
+    -fx-pref-height: 30px; /* ajusta según necesites */
+}
+
+.table-view .table-row-cell {
+    -fx-cell-size: 50px;
+}

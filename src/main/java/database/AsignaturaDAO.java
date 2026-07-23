@@ -8,9 +8,9 @@ import java.util.Map;
 
 public class AsignaturaDAO {
 
-    public static final AsignaturaDAO INSTANCE = new AsignaturaDAO();
+    private static final AsignaturaDAO INSTANCE = new AsignaturaDAO();
 
-    public AsignaturaDAO() {
+    private AsignaturaDAO() {
     }
 
     public static AsignaturaDAO getInstance() { return INSTANCE; }

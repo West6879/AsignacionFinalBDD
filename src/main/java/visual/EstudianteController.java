@@ -1,13 +1,23 @@
 package visual;
 
+import database.InscripcionDAO;
 import estructura.Estudiante;
+import estructura.Grupo;
 import estructura.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.net.URL;
 import java.sql.Date;
+import java.util.List;
 import java.util.Optional;
 
 import static visual.PaginaPrincipalController.*;
@@ -17,6 +27,7 @@ public class EstudianteController {
     @FXML private Button btnInsertar;
     @FXML private Button btnActualizar;
     @FXML private Button btnEliminar;
+    @FXML private Button btnHorario;
 
     @FXML private TextField fieldID;
     @FXML private TextField fieldPrimerNombre;
@@ -73,6 +84,7 @@ public class EstudianteController {
 
         setupColumnas();
         activarBotones();
+        habilitarWrapText(colNombreCompleto);
         tablaEstudiantes.getItems().addAll(Main.getInstance().getEstudiantes().values());
     }
 
@@ -157,6 +169,45 @@ public class EstudianteController {
         }
     }
 
+    @FXML
+    public void btnHorarioClicked(ActionEvent event) throws IOException {
+        URL fxmlUrl = GrupoController.class.getResource("/fxml/HorarioDeEstudiante.fxml");
+        if(fxmlUrl == null){
+            throw new IOException("HorarioDeEstudiante.fxml no encontrado.");
+        }
+        FXMLLoader loader = new FXMLLoader(fxmlUrl);
+        Parent root = loader.load();
+
+        Estudiante seleccionado = tablaEstudiantes.getSelectionModel().getSelectedItem();
+
+        List<String> periodosDelEstudiante = InscripcionDAO.getInstance().getPeriodosDeEstudiante(seleccionado.getId());
+        String codPeriodoAcademico;
+        if(periodosDelEstudiante.isEmpty()) {
+            alerta("Alerta!!", "Este estudiante no tiene inscripciones actualmente",  Alert.AlertType.ERROR);
+            return;
+        } else if (periodosDelEstudiante.size() == 1) {
+            codPeriodoAcademico = periodosDelEstudiante.getFirst();
+        } else {
+            ChoiceDialog<String> dialog = new ChoiceDialog<>(periodosDelEstudiante.getFirst(), periodosDelEstudiante);
+            dialog.setTitle("Período Academico");
+            dialog.setContentText("Este estudiante tiene inscripciones en varios periodos, seleccione uno:");
+            Optional<String> resultado = dialog.showAndWait();
+            if(resultado.isEmpty()) return;
+            codPeriodoAcademico = resultado.get();
+        }
+
+        HorarioDeEstudianteController controller = loader.getController();
+        controller.cargarHorario(seleccionado.getId(), codPeriodoAcademico);
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.setResizable(false);
+        stage.setTitle("Horarios del estudiante: ");
+        stage.setScene(scene);
+
+        stage.show();
+    }
+
     public void setEstudiante(Estudiante estudiante) {
         this.editando = estudiante;
         if(this.editando != null) {
@@ -183,6 +234,9 @@ public class EstudianteController {
         );
         btnInsertar.disableProperty().bind(
                 tablaEstudiantes.getSelectionModel().selectedItemProperty().isNotNull()
+        );
+        btnHorario.disableProperty().bind(
+                tablaEstudiantes.getSelectionModel().selectedItemProperty().isNull()
         );
     }
 

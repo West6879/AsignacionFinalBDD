@@ -79,6 +79,7 @@ public class AsignaturaController {
         setupSpinners();
         setupColumnas();
         activarBotones();
+        habilitarWrapText(colNombre);
         tablaAsignaturas.getItems().addAll(Main.getInstance().getAsignaturas().values());
     }
 
@@ -145,6 +146,7 @@ public class AsignaturaController {
         Main.getInstance().actualizarAsignatura(editando);
         tablaAsignaturas.refresh();
         tablaAsignaturas.getSelectionModel().clearSelection();
+
         editando = null;
         limpiarCampos();
     }
