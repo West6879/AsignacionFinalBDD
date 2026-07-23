@@ -120,4 +120,26 @@ public class Estudiante {
     @Override
     public String toString() {return id + " - " + nombre1 + " " + apellido1;
     }
+
+    public String getNombreFormateado() {
+        StringBuilder sb = new StringBuilder();
+
+        if (nombre1 != null) {
+            sb.append(nombre1.trim());
+        }
+
+        if (nombre2 != null && !nombre2.trim().isEmpty()) {
+            sb.append(" ").append(nombre2.trim().charAt(0)).append(".");
+        }
+
+        if (apellido1 != null && !apellido1.trim().isEmpty()) {
+            sb.append(" ").append(apellido1.trim());
+        }
+
+        if (apellido2 != null && !apellido2.trim().isEmpty()) {
+            sb.append(" ").append(apellido2.trim().charAt(0)).append(".");
+        }
+
+        return sb.toString();
+    }
 }

@@ -2,16 +2,21 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="546.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CONTROLLER_NAME">
+<AnchorPane prefHeight="400.0" prefWidth="546.0" style="-fx-background-color: #f8f9fa;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visual.ControlInforme">
    <children>
-      <ComboBox layoutX="47.0" layoutY="52.0" prefWidth="150.0" />
-      <ComboBox layoutX="241.0" layoutY="52.0" prefWidth="150.0" />
-      <Button layoutX="434.0" layoutY="52.0" mnemonicParsing="false" text="Ver informe" />
-      <Label layoutX="47.0" layoutY="35.0" text="Seleccione un estudiante" />
-      <Label layoutX="241.0" layoutY="35.0" text="Seleccione periodo" />
-      <TextArea layoutX="47.0" layoutY="100.0" prefHeight="271.0" prefWidth="392.0" />
-      <Button layoutX="461.0" layoutY="356.0" mnemonicParsing="false" text="Cerrar" />
-      <Label layoutX="8.0" layoutY="6.0" text="Visualizar informe de inscripción" />
+      <Label layoutX="14.0" layoutY="10.0" text="Visualizar informe de inscripción" style="-fx-text-fill: #333333;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="47.0" layoutY="35.0" text="Seleccione un estudiante" style="-fx-text-fill: #495057;" />
+      <ComboBox fx:id="cbxEstudiante" layoutX="47.0" layoutY="52.0" prefWidth="150.0" style="-fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 4px; -fx-background-radius: 4px;" />
+      <Label layoutX="220.0" layoutY="35.0" text="Seleccione periodo" style="-fx-text-fill: #495057;" />
+      <ComboBox fx:id="cbxPeriodo" layoutX="220.0" layoutY="52.0" prefWidth="150.0" style="-fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 4px; -fx-background-radius: 4px;" />
+      <Button fx:id="btnVerInforme" layoutX="390.0" layoutY="50.0" mnemonicParsing="false" onAction="#generarInforme" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: white; -fx-border-color: #007bff; -fx-border-width: 2px; -fx-border-radius: 6px; -fx-background-radius: 6px; -fx-text-fill: #007bff; -fx-font-weight: bold; -fx-cursor: hand;" text="Ver informe" />
+      <TextArea fx:id="txtReporte" editable="false" layoutX="47.0" layoutY="95.0" prefHeight="280.0" prefWidth="392.0" style="-fx-border-color: #ced4da; -fx-border-radius: 4px; -fx-font-family: 'Monospaced';" />
+      <Button fx:id="btnCerrar" layoutX="450.0" layoutY="345.0" mnemonicParsing="false" onAction="#cerrar" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: white; -fx-border-color: #007bff; -fx-border-width: 2px; -fx-border-radius: 6px; -fx-background-radius: 6px; -fx-text-fill: #007bff; -fx-font-weight: bold; -fx-cursor: hand;" text="Cerrar" />
    </children>
 </AnchorPane>

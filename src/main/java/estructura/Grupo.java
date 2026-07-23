@@ -63,4 +63,14 @@ public class Grupo {
     public String getClaveGrupo() {
         return codPeriodoAcademico + '|' + codAsignatura + '|' + numGrupo;
     }
+
+    public boolean esGrupoValido() {
+        if (codPeriodoAcademico == null || codPeriodoAcademico.trim().isEmpty()) return false;
+        if (codAsignatura == null || codAsignatura.trim().isEmpty()) return false;
+        if (numGrupo == null || numGrupo.trim().isEmpty()) return false;
+
+        if (cupoGrupo <= 0) return false;
+
+        return true;
+    }
 }

@@ -31,11 +31,10 @@ public class GrupoDAO {
                 Grupo grupo = new Grupo();
 
                 grupo.setCodPeriodoAcademico(resultSet.getString("CodPeriodoAcademico"));
-                grupo.setCodAsignatura(resultSet.getString("codAsignatura"));
+                grupo.setCodAsignatura(resultSet.getString("CodAsignatura"));
                 grupo.setNumGrupo(resultSet.getString("NumGrupo"));
                 grupo.setCupoGrupo(resultSet.getInt("CupoGrupo"));
                 grupo.setHorario(resultSet.getString("Horario"));
-
 
                 lista.put(grupo.getClaveGrupo(), grupo);
             }
@@ -47,27 +46,66 @@ public class GrupoDAO {
         return lista;
     }
 
+    // CORREGIDO: Ahora es un UPDATE real, no un SELECT
     public Grupo actualizarGrupo(Grupo grupo) {
-        String sql = "SELECT * FROM Grupo WHERE CodPeriodoAcademico = ? AND CodAsignatura = ? AND NumGrupo = ?";
-        try(Connection connection = DatabaseConnection.getConnection()) {
+        final String sql = "UPDATE Grupo SET CupoGrupo = ?, Horario = ? " +
+                "WHERE CodPeriodoAcademico = ? AND CodAsignatura = ? AND NumGrupo = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection()) {
             PreparedStatement ps = connection.prepareStatement(sql);
 
-            ps.setString(1, grupo.getCodPeriodoAcademico());
-            ps.setString(2, grupo.getCodAsignatura());
-            ps.setString(3, grupo.getNumGrupo());
-            try(ResultSet rs = ps.executeQuery()) {
-                if(rs.next()) {
-                    return new Grupo(rs.getString("CodPeriodoAcademico"), rs.getString("CodAsignatura"),
-                            rs.getString("NumGrupo"), rs.getInt("CupoGrupo"), rs.getString("Horario"));
-                }
-            } catch(SQLException e) {
-                System.out.println("No se pudo actualizar el horario del grupo: " + e.getMessage());
+            ps.setInt(1, grupo.getCupoGrupo());
+            ps.setString(2, grupo.getHorario());
+            ps.setString(3, grupo.getCodPeriodoAcademico());
+            ps.setString(4, grupo.getCodAsignatura());
+            ps.setString(5, grupo.getNumGrupo());
+
+            int filasAfectadas = ps.executeUpdate();
+            if (filasAfectadas > 0) {
+                return grupo;
             }
 
-        } catch(SQLException e) {
+        } catch (SQLException e) {
+            System.err.println("No se pudo actualizar el horario/cupo del grupo:");
             e.printStackTrace();
         }
         return null;
     }
-}
 
+    public void save(Grupo grupo) {
+        final String sql = "INSERT INTO Grupo (CodPeriodoAcademico, CodAsignatura, NumGrupo, CupoGrupo, Horario) " +
+                "VALUES (?, ?, ?, ?, ?)";
+
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, grupo.getCodPeriodoAcademico());
+            ps.setString(2, grupo.getCodAsignatura());
+            ps.setString(3, grupo.getNumGrupo());
+            ps.setInt(4, grupo.getCupoGrupo());
+            ps.setString(5, grupo.getHorario());
+
+            int filasAfectadas = ps.executeUpdate();
+            System.out.println("Grupo guardado en base de datos. Filas afectadas: " + filasAfectadas);
+
+        } catch (SQLException e) {
+            System.err.println("❌ ERROR FATAL AL INSERTAR GRUPO EN SQL:");
+            e.printStackTrace();
+        }
+    }
+
+    public void delete(String codPeriodo, String codAsignatura, String numGrupo) {
+        final String sql = "DELETE FROM Grupo WHERE CodPeriodoAcademico = ? AND CodAsignatura = ? AND NumGrupo = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, codPeriodo);
+            ps.setString(2, codAsignatura);
+            ps.setString(3, numGrupo);
+
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("No se pudo eliminar el grupo: " + e.getMessage());
+        }
+    }
+}
