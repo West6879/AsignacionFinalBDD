@@ -3,26 +3,36 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="528.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladores.ControlInscribir">
-   <children>
-      <ComboBox fx:id="cbxEst" layoutX="34.0" layoutY="64.0" prefWidth="150.0" />
-      <Label layoutX="34.0" layoutY="46.0" text="Seleccione un estudiante" />
-      <Label layoutX="300.0" layoutY="46.0" text="Grupos inscritos" />
-      <Button layoutX="424.0" layoutY="14.0" mnemonicParsing="false" text="Ver horario" />
-      <Button layoutX="300.0" layoutY="359.0" mnemonicParsing="false" text="Eliminar inscripción" />
-      <Label layoutX="34.0" layoutY="123.0" text="Grupos disponibles" />
-      <ScrollPane layoutX="300.0" layoutY="64.0" prefHeight="277.0" prefWidth="200.0">
-        <content>
-          <AnchorPane fx:id="pnGrupInsc" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-        </content>
-      </ScrollPane>
-      <ScrollPane layoutX="34.0" layoutY="141.0" prefHeight="200.0" prefWidth="246.0">
-        <content>
-          <AnchorPane fx:id="pnGrupDisp" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-        </content>
-      </ScrollPane>
-      <Button layoutX="177.0" layoutY="359.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="102.0" text="Agregar grupo" />
-      <Button layoutX="460.0" layoutY="359.0" mnemonicParsing="false" text="Salir" />
-      <Label layoutX="6.0" layoutY="6.0" text="Inscripción de grupos" />
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="528.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visual.ControlInscribir">
+    <children>
+        <Label layoutX="6.0" layoutY="6.0" text="Inscripción de grupos" />
+        <Button fx:id="btnVerHorario" layoutX="424.0" layoutY="14.0" mnemonicParsing="false" text="Ver horario" />
+
+        <Label layoutX="34.0" layoutY="46.0" text="Seleccione un estudiante" />
+        <ComboBox fx:id="cbxEst" layoutX="34.0" layoutY="64.0" prefWidth="150.0" />
+
+        <!-- Grupos Disponibles -->
+        <Label layoutX="34.0" layoutY="123.0" text="Grupos disponibles" />
+        <TableView fx:id="tvGrupDisp" layoutX="34.0" layoutY="141.0" prefHeight="200.0" prefWidth="246.0">
+            <columns>
+                <TableColumn fx:id="colDispId" prefWidth="60.0" text="No." />
+                <TableColumn fx:id="colDispNombre" prefWidth="111.0" text="Materia" />
+                <TableColumn fx:id="colDispHorario" prefWidth="74.60003662109375" text="Horario" />
+            </columns>
+        </TableView>
+
+        <!-- Grupos Inscritos -->
+        <Label layoutX="300.0" layoutY="46.0" text="Grupos inscritos" />
+        <TableView fx:id="tvGrupInsc" layoutX="300.0" layoutY="64.0" prefHeight="277.0" prefWidth="200.0">
+            <columns>
+                <TableColumn fx:id="colInscId" prefWidth="60.0" text="No." />
+                <TableColumn fx:id="colInscNombre" prefWidth="138.0" text="Materia" />
+            </columns>
+        </TableView>
+
+        <!-- Botones de Acción -->
+        <Button fx:id="btnAgregar" layoutX="177.0" layoutY="359.0" mnemonicParsing="false" onAction="#agregarGrupo" prefHeight="26.0" prefWidth="102.0" text="Agregar grupo" />
+        <Button fx:id="btnEliminar" layoutX="300.0" layoutY="359.0" mnemonicParsing="false" onAction="#eliminarInscripcion" text="Eliminar inscripción" />
+        <Button fx:id="btnSalir" layoutX="460.0" layoutY="359.0" mnemonicParsing="false" text="Salir" />
+    </children>
 </AnchorPane>

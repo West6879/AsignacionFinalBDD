@@ -116,4 +116,8 @@ public class Estudiante {
     public String getNombreCompleto() {
         return nombre1 + ' ' + nombre2 + ' ' + apellido1 + ' ' + apellido2;
     }
+
+    @Override
+    public String toString() {return id + " - " + nombre1 + " " + apellido1;
+    }
 }

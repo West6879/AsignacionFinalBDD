@@ -1,47 +1,47 @@
 package estructura;
 
 public class Inscripcion {
-    private char codPeriodoAcademico;
-    private char id;
-    private char codAsignatura;
-    private char numGrupo;
+    private String codPeriodoAcademico;
+    private String idEstudiante;
+    private String codAsignatura;
+    private String numGrupo;
 
-    public Inscripcion(char codPeriodoAcademico, char id, char codAsignatura, char numGrupo) {
+    public Inscripcion(String codPeriodoAcademico, String idEstudiante, String codAsignatura, String numGrupo) {
         this.codPeriodoAcademico = codPeriodoAcademico;
-        this.id = id;
+        this.idEstudiante = idEstudiante;
         this.codAsignatura = codAsignatura;
         this.numGrupo = numGrupo;
     }
 
-    public char getCodPeriodoAcademico() {
+    public String getCodPeriodoAcademico() {
         return codPeriodoAcademico;
     }
 
-    public void setCodPeriodoAcademico(char codPeriodoAcademico) {
+    public void setCodPeriodoAcademico(String codPeriodoAcademico) {
         this.codPeriodoAcademico = codPeriodoAcademico;
     }
 
-    public char getId() {
-        return id;
+    public String getId() {
+        return idEstudiante;
     }
 
-    public void setId(char id) {
-        this.id = id;
+    public void setId(String id) {
+        this.idEstudiante = id;
     }
 
-    public char getCodAsignatura() {
+    public String getCodAsignatura() {
         return codAsignatura;
     }
 
-    public void setCodAsignatura(char codAsignatura) {
+    public void setCodAsignatura(String codAsignatura) {
         this.codAsignatura = codAsignatura;
     }
 
-    public char getNumGrupo() {
+    public String getNumGrupo() {
         return numGrupo;
     }
 
-    public void setNumGrupo(char numGrupo) {
+    public void setNumGrupo(String numGrupo) {
         this.numGrupo = numGrupo;
     }
 }

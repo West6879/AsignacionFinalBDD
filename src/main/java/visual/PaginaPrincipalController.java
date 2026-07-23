@@ -133,4 +133,24 @@ public class PaginaPrincipalController extends Application {
             }
         });
     }
+
+
+    @FXML
+    public void btnInscribir(ActionEvent event) throws IOException {
+        URL fxmlUrl = PaginaPrincipalController.class.getResource("/fxml/InscribirHorario.fxml");
+        if (fxmlUrl == null) {
+            throw new IOException("Inscribir.fxml no encontrado.");
+        }
+        FXMLLoader loader = new FXMLLoader(fxmlUrl);
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        Window owner = rootPane.getScene().getWindow();
+        stage.initOwner(owner);
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.setResizable(false);
+        stage.setTitle("Inscripción de grupos");
+        stage.setScene(scene);
+        stage.show();
+    }
 }
